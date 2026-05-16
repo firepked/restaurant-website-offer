@@ -341,8 +341,16 @@ footer {
 }
 
 /* Language visibility */
-html[data-lang="de"] .en-only { display: none; }
-html[data-lang="en"] .de-only { display: none; }
+html[data-lang="de"] .en-only { display: none !important; }
+html[data-lang="en"] .de-only { display: none !important; }
+html[data-lang="de"] .pricing .en,
+html[data-lang="de"] .addons .en,
+html[data-lang="de"] .faq .en { display: none !important; }
+html[data-lang="en"] .pricing .de,
+html[data-lang="en"] .addons .de,
+html[data-lang="en"] .faq .de { display: none !important; }
+html[data-lang="de"] .step .en,
+html[data-lang="en"] .step .de { display: none !important; }
 </style>
 </head>
 <body>

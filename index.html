@@ -488,8 +488,8 @@ function r() {
   let html = '';
   // base row
   html += `<div class="summary-row"><span class="label">🌐 Website</span><span class="val">${isEn?'$15':'12€'}</span></div>`;
-  for (let i = 0; i < checkboxes.length; i++) {
-    const m = MODULES[i + 1]; // +1 because index 0 is base
+  for (let i = 1; i < checkboxes.length; i++) {
+    const m = MODULES[i];
     if (!m) continue;
     if (checkboxes[i].checked) {
       const p = isEn ? m.priceEn : m.priceDe;

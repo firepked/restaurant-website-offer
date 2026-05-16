@@ -396,7 +396,21 @@ footer{padding:2rem 0;text-align:center;font-size:.8rem;color:#b0a598;border-top
         <span class="v"><span id="tm">15</span><small class="l-en"> $</small><small class="l-de"> €</small></span>
       </div>
       <div class="s-setup" id="ss"><span class="l-en">+ one-time setup: $149</span><span class="l-de">+ einmalige Einrichtung: 99€</span></div>
-      <div class="s-tech" id="st"><span class="l-en">Our extension cost: </span><span class="l-de">Unsere Extensions-Kosten: </span><strong><span id="tc">$0</span>/yr</strong></div>
+      <div class="s-tech" id="st">
+        <div style="font-weight:600;margin-bottom:.4rem;font-size:.8rem;">
+          <span class="l-en">📊 Our costs (what we pay)</span>
+          <span class="l-de">📊 Unsere Kosten (was wir zahlen)</span>
+        </div>
+        <div id="st-items"></div>
+        <div style="display:flex;justify-content:space-between;padding:.25rem 0;font-size:.75rem;border-top:1px solid #e6ddd0;margin-top:.2rem;font-weight:600;">
+          <span class="l-en">Total / yr</span><span class="l-de">Gesamt / Jahr</span>
+          <span id="st-total">$0</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:.2rem 0;font-size:.75rem;color:#2d7a4a;font-weight:600;">
+          <span class="l-en">📈 Monthly margin</span><span class="l-de">📈 Monatliche Marge</span>
+          <span id="st-margin">$0</span>
+        </div>
+      </div>
       <a href="mailto:hello@restaurant.website" class="btn l-en">Get started</a>
       <a href="mailto:hello@restaurant.website" class="btn l-de">Loslegen</a>
     </div>
@@ -474,20 +488,28 @@ const M=[
 function r(){
   const en=document.documentElement.getAttribute('data-lang')==='en',c=document.querySelectorAll('.module input[type="checkbox"]');
   let mo=15,se=en?149:99,tc=0,ht='<div class="s-row"><span class="label">🌐 Website</span><span class="v">'+(en?'$15':'12€')+'</span></div>';
-  for(let i=0;i<c.length;i++){
-    const m=M[i];if(!m||!c[i].checked)continue;
+  for(let i=1;i<c.length;i++){
+    const m=M[i-1];if(!m||!c[i].checked)continue;
     const p=en?m.pe:m.pd,lb=en?m.le:m.ld,l=(en?'$':'€')+p;
     if(m.ot){ht+='<div class="s-row"><span class="label">'+lb+'</span><span class="v">'+l+'</span></div>';se+=en?m.se||0:m.sd||0}
     else{mo+=p;se+=en?m.se||0:m.sd||0;ht+='<div class="s-row"><span class="label">'+lb+'</span><span class="v">+'+(en?'$':'€')+p+' <small style="font-weight:400;color:#b0a598">/mo</small></span></div>'}
-    tc+=m.co||0
+  tc+=m.co||0
   }
   document.getElementById('s-items').innerHTML=ht;
   document.getElementById('tm').textContent=mo;
   const su=en?'+ one-time setup: $'+se:'+ einmalige Einrichtung: '+se+'€';
-  document.getElementById('ss').innerHTML='<span class="l-en">'+en?'+ one-time setup: $'+se:'<span class="l-de">+ einmalige Einrichtung: '+se+'€</span>';
-  // simpler approach
   document.getElementById('ss').innerHTML=su;
-  document.getElementById('tc').textContent=(en?'$':'€')+tc+(en?'/yr':'/Jahr');
+  // Tech cost breakdown
+  let stHtml='';
+  for(let i=1;i<c.length;i++){
+    const m=M[i-1];if(!m||!c[i].checked||!m.co)continue;
+    const lb=en?m.le:m.ld;
+    stHtml+='<div style="display:flex;justify-content:space-between;padding:.15rem 0;font-size:.72rem;"><span>'+lb+'</span><span>'+(en?'$':'€')+m.co+'<span class="l-en">/yr</span><span class="l-de">/Jahr</span></span></div>';
+  }
+  document.getElementById('st-items').innerHTML=stHtml;
+  document.getElementById('st-total').innerHTML=(en?'$':'€')+tc+(en?'/yr':'/Jahr');
+  const marg=mo-(tc/12);
+  document.getElementById('st-margin').innerHTML=(en?'$':'€')+marg.toFixed(0)+(en?'/mo':'/Monat');
 }
 
 function sL(l){

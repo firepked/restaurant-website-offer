@@ -81,29 +81,10 @@ nav .brand span { color: var(--accent); }
 .hero {
   margin: 1rem 0 0;
   border-radius: var(--radius);
-  overflow: hidden;
-  position: relative;
-  min-height: 420px;
-  display: flex;
-  align-items: center;
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-}
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center 40%;
-  opacity: 0.35;
-}
-.hero-bg-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(26,26,26,0.92) 0%, rgba(26,26,26,0.6) 50%, rgba(26,26,26,0.3) 100%);
+  padding: 4rem 3rem;
+  background: linear-gradient(135deg, #1f1b16 0%, #2d281e 100%);
 }
 .hero-content {
-  position: relative;
-  z-index: 2;
-  padding: 4rem 3rem;
   max-width: 650px;
 }
 .hero h1 {
@@ -512,8 +493,6 @@ html[data-lang="de"] .l-en { display: none !important; }
 
 <!-- ===== HERO ===== -->
 <section class="hero">
-  <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80')"></div>
-  <div class="hero-bg-overlay"></div>
   <div class="hero-content">
     <h1 class="l-en">Your restaurant deserves a <em>real</em> website.</h1>
     <h1 class="l-de">Dein Restaurant verdient eine <em>richtige</em> Website.</h1>

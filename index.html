@@ -6,27 +6,27 @@
 <title>Restaurant Websites – Custom, hand-crafted, hosted</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #faf7f2;
   --surface: #ffffff;
-  --surface-2: #f5f0e8;
+  --surface-2: #f5efe6;
   --border: #e6ddd0;
   --text: #1f1b16;
   --text-muted: #8a7e72;
   --text-subtle: #b0a598;
-  --accent: #c8622a;
-  --accent-light: #f0a050;
-  --accent-subtle: #fdf0e4;
+  --accent: #d96b2a;
+  --accent-hover: #c45a1e;
+  --accent-soft: #fef0e5;
   --green: #2d7a4a;
+  --green-soft: #eaf6ef;
   --radius: 16px;
   --radius-sm: 10px;
   --max-w: 1100px;
   --shadow: 0 2px 12px rgba(0,0,0,0.04);
   --shadow-hover: 0 8px 30px rgba(0,0,0,0.08);
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
@@ -36,21 +36,21 @@ body {
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
-
 .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
 
-/* ===== TOGGLE ===== */
+/* ===== LANG TOGGLE ===== */
 .lang-toggle {
   position: fixed;
   top: 1rem;
   right: 1rem;
   z-index: 100;
   display: flex;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: var(--shadow);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 .lang-toggle button {
   padding: 0.5rem 1rem;
@@ -64,63 +64,121 @@ body {
   cursor: pointer;
   transition: all 0.15s;
 }
-.lang-toggle button.active {
-  background: var(--accent);
-  color: #fff;
-}
+.lang-toggle button.active { background: var(--accent); color: #fff; }
 .lang-toggle button:not(.active):hover { color: var(--text); }
 
 /* ===== NAV ===== */
 nav {
-  padding: 1.5rem 0 1rem;
+  padding: 1.5rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-nav .brand {
-  font-weight: 700;
-  font-size: 1.1rem;
-  letter-spacing: -0.02em;
-}
+nav .brand { font-weight: 700; font-size: 1.15rem; letter-spacing: -0.02em; }
+nav .brand span { color: var(--accent); }
 
 /* ===== HERO ===== */
 .hero {
-  padding: 4rem 0 3rem;
-  text-align: center;
-  max-width: 780px;
-  margin: 0 auto;
+  margin: 1rem 0 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 40%;
+  opacity: 0.35;
+}
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(26,26,26,0.92) 0%, rgba(26,26,26,0.6) 50%, rgba(26,26,26,0.3) 100%);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 4rem 3rem;
+  max-width: 650px;
 }
 .hero h1 {
   font-family: 'Figtree', sans-serif;
-  font-size: clamp(2.4rem, 5vw, 4rem);
-  font-weight: 800;
-  line-height: 1.12;
+  font-size: clamp(2.5rem, 4.5vw, 3.8rem);
+  font-weight: 900;
+  line-height: 1.1;
   letter-spacing: -0.03em;
+  color: #fff;
   margin-bottom: 1rem;
 }
 .hero h1 em {
   font-style: normal;
   color: var(--accent);
   text-decoration: underline;
-  text-decoration-color: var(--accent-light);
-  text-decoration-thickness: 4px;
-  text-underline-offset: 6px;
+  text-decoration-color: rgba(217,107,42,0.4);
+  text-decoration-thickness: 5px;
+  text-underline-offset: 8px;
 }
 .hero p {
   font-size: 1.05rem;
-  color: var(--text-muted);
+  color: rgba(255,255,255,0.75);
   line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+.hero .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.hero .btn:hover { background: var(--accent-hover); transform: translateY(-2px); }
+
+/* ===== TRUST STRIP ===== */
+.trust {
+  text-align: center;
+  padding: 2rem 0 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-subtle);
 }
 
 /* ===== PRICING ===== */
-.pricing { padding: 2rem 0 4rem; }
+.pricing { padding: 3rem 0 4rem; }
+
+.section-label {
+  font-family: 'Figtree', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+.section-sub {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
 
 .toggle-bar {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   font-size: 0.9rem;
   color: var(--text-muted);
 }
@@ -153,21 +211,24 @@ nav .brand {
 }
 .toggle-switch.active::after { transform: translateX(20px); }
 
+html[data-tech="on"] .tech-detail { display: block; }
 .tech-detail {
   display: none;
   font-size: 0.78rem;
   color: var(--text-subtle);
-  padding: 0.25rem 0 0 1.5rem;
+  margin: 0.15rem 0 0 0;
   line-height: 1.4;
-}
-.tech-detail.show { display: block; }
-.tech-detail code {
+  padding: 0.3rem 0.6rem;
   background: var(--surface-2);
-  padding: 0.1rem 0.3rem;
-  border-radius: 4px;
-  font-size: 0.75rem;
+  border-radius: 6px;
+  border-left: 2px solid var(--accent);
 }
-html[data-tech="on"] .tech-detail { display: block; }
+.tech-detail code {
+  background: rgba(0,0,0,0.06);
+  padding: 0.05rem 0.3rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+}
 
 .pricing-grid {
   display: grid;
@@ -188,14 +249,14 @@ html[data-tech="on"] .tech-detail { display: block; }
   position: relative;
 }
 .card:hover {
-  border-color: var(--accent-light);
+  border-color: var(--accent);
   box-shadow: var(--shadow-hover);
   transform: translateY(-4px);
 }
 .card.featured {
   border-color: var(--accent);
   border-width: 2px;
-  box-shadow: 0 4px 24px rgba(200,98,42,0.12);
+  box-shadow: 0 4px 24px rgba(217,107,42,0.12);
 }
 .card.featured::before {
   content: attr(data-badge);
@@ -211,8 +272,8 @@ html[data-tech="on"] .tech-detail { display: block; }
   text-transform: uppercase;
   padding: 0.3rem 1.2rem;
   border-radius: 20px;
+  white-space: nowrap;
 }
-
 .card h3 {
   font-family: 'Figtree', sans-serif;
   font-size: 1.15rem;
@@ -234,22 +295,32 @@ html[data-tech="on"] .tech-detail { display: block; }
   color: var(--text-muted);
   letter-spacing: -0.01em;
 }
+.card .cost-row {
+  font-size: 0.8rem;
+  color: var(--green);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+.card .cost-row .cost-green { background: var(--green-soft); padding: 0.15rem 0.5rem; border-radius: 6px; display: inline-block; }
 .card .setup {
   font-size: 0.85rem;
   color: var(--text-subtle);
   margin-bottom: 1.25rem;
 }
-.card ul {
-  list-style: none;
-  flex: 1;
-}
+.card ul { list-style: none; flex: 1; }
 .card ul li {
-  padding: 0.4rem 0;
+  padding: 0.45rem 0;
   font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+.card ul li:last-child { border-bottom: none; }
+.card ul li .line {
   display: flex;
   align-items: flex-start;
   gap: 0.5rem;
-  line-height: 1.4;
 }
 .card ul li .check {
   color: var(--green);
@@ -258,33 +329,24 @@ html[data-tech="on"] .tech-detail { display: block; }
   width: 1rem;
 }
 .card ul li strong { font-weight: 600; }
-.card ul li .sub-text {
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  display: block;
-  padding-left: 1.5rem;
-}
 
 .card .btn {
   display: block;
-  padding: 0.75rem;
+  padding: 0.8rem;
   border-radius: var(--radius-sm);
   font-family: inherit;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
   border: none;
   cursor: pointer;
   text-decoration: none;
   text-align: center;
   transition: all 0.15s;
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
   width: 100%;
 }
-.card .btn-primary {
-  background: var(--accent);
-  color: #fff;
-}
-.card .btn-primary:hover { background: #b05520; transform: scale(1.02); }
+.card .btn-primary { background: var(--accent); color: #fff; }
+.card .btn-primary:hover { background: var(--accent-hover); transform: scale(1.02); }
 .card .btn-outline {
   background: transparent;
   border: 1px solid var(--border);
@@ -293,15 +355,7 @@ html[data-tech="on"] .tech-detail { display: block; }
 .card .btn-outline:hover { border-color: var(--accent); }
 
 /* ===== ADDONS ===== */
-.addons { padding: 2rem 0 4rem; }
-.section-label {
-  font-family: 'Figtree', sans-serif;
-  font-size: 1.6rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 2rem;
-  letter-spacing: -0.02em;
-}
+.addons { padding: 1rem 0 4rem; }
 .addons-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -315,28 +369,35 @@ html[data-tech="on"] .tech-detail { display: block; }
   box-shadow: var(--shadow);
 }
 .addon-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
-.addon-card .price {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--accent);
-}
-.addon-card p {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  margin-top: 0.2rem;
-  line-height: 1.4;
-}
+.addon-card .price { font-size: 1.15rem; font-weight: 700; color: var(--accent); }
+.addon-card p { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem; line-height: 1.4; }
 
-/* ===== DIVIDER ===== */
-.divider {
-  border: none;
-  border-top: 1px solid var(--border);
-  max-width: 200px;
-  margin: 0 auto;
+/* ===== COST TABLE ===== */
+.cost-breakdown {
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
 }
+.cost-breakdown h3 {
+  font-family: 'Figtree', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.cost-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.cost-table th { text-align: left; font-weight: 600; padding: 0.5rem 0.75rem; border-bottom: 2px solid var(--border); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); }
+.cost-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); }
+.cost-table tr:last-child td { border-bottom: none; }
+.cost-table .green { color: var(--green); font-weight: 600; }
+.cost-table .muted { color: var(--text-subtle); }
+.cost-table .total { font-weight: 700; }
 
 /* ===== PROCESS ===== */
-.process { padding: 4rem 0; }
+.process { padding: 3rem 0; }
 .process-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -353,10 +414,8 @@ html[data-tech="on"] .tech-detail { display: block; }
   box-shadow: var(--shadow);
 }
 .step .num {
-  width: 36px;
-  height: 36px;
-  background: var(--accent);
-  color: #fff;
+  width: 36px; height: 36px;
+  background: var(--accent); color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -370,10 +429,7 @@ html[data-tech="on"] .tech-detail { display: block; }
 
 /* ===== FAQ ===== */
 .faq { padding: 3rem 0 4rem; }
-.faq-grid {
-  max-width: 700px;
-  margin: 0 auto;
-}
+.faq-grid { max-width: 700px; margin: 0 auto; }
 .faq-item {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -389,6 +445,8 @@ html[data-tech="on"] .tech-detail { display: block; }
 .cta {
   text-align: center;
   padding: 3rem 0 4rem;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
 }
 .cta h2 {
   font-family: 'Figtree', sans-serif;
@@ -412,11 +470,10 @@ html[data-tech="on"] .tech-detail { display: block; }
   text-decoration: none;
   transition: all 0.15s;
 }
-.cta .btn:hover { background: #b05520; transform: scale(1.03); }
+.cta .btn:hover { background: var(--accent-hover); transform: scale(1.03); }
 
 /* ===== FOOTER ===== */
 footer {
-  border-top: 1px solid var(--border);
   padding: 2rem 0;
   text-align: center;
   font-size: 0.82rem;
@@ -428,7 +485,10 @@ footer {
   .pricing-grid { grid-template-columns: 1fr; }
   .addons-grid { grid-template-columns: 1fr; }
   .process-grid { grid-template-columns: 1fr; }
+  .hero-content { padding: 3rem 1.5rem; }
   .hero h1 { font-size: 1.8rem; }
+  .hero { min-height: 320px; }
+  .cost-breakdown { padding: 1.25rem; }
 }
 
 /* ===== LANGUAGE VISIBILITY ===== */
@@ -439,61 +499,61 @@ html[data-lang="de"] .l-en { display: none !important; }
 <body>
 
 <div class="lang-toggle">
-  <button onclick="setLang('en')" id="lang-en" class="active">EN</button>
-  <button onclick="setLang('de')" id="lang-de">DE</button>
+  <button onclick="sL('en')" id="lang-en" class="active">EN</button>
+  <button onclick="sL('de')" id="lang-de">DE</button>
 </div>
 
 <div class="container">
 
 <!-- NAV -->
 <nav>
-  <span class="brand"><span style="color:var(--accent)">restaurant</span>.website</span>
+  <span class="brand"><span>restaurant</span>.website</span>
 </nav>
 
 <!-- ===== HERO ===== -->
 <section class="hero">
-  <h1 class="l-en">Your restaurant deserves a <em>real</em> website.</h1>
-  <h1 class="l-de">Dein Restaurant verdient eine <em>richtige</em> Website.</h1>
-
-  <p class="l-en">No template. No page builder. We build you a website as unique as your restaurant — based on your menu and your flyer. Hosting, updates, and support included.</p>
-  <p class="l-de">Kein Template. Kein Baukasten. Wir bauen dir eine Website, die so einzigartig ist wie dein Laden – basierend auf deiner Speisekarte und deinem Flyer. Inklusive Hosting, Updates und Support.</p>
+  <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80')"></div>
+  <div class="hero-bg-overlay"></div>
+  <div class="hero-content">
+    <h1 class="l-en">Your restaurant deserves a <em>real</em> website.</h1>
+    <h1 class="l-de">Dein Restaurant verdient eine <em>richtige</em> Website.</h1>
+    <p class="l-en">No templates. No page builders. We build you a unique website based on your menu and flyer — hosted in Germany, updated monthly, supported personally.</p>
+    <p class="l-de">Keine Templates. Kein Baukasten. Wir bauen dir eine einzigartige Website basierend auf deiner Speisekarte und deinem Flyer – gehostet in Deutschland, monatlich aktualisiert, persönlich betreut.</p>
+    <a href="mailto:hello@restaurant.website" class="btn l-en">👉 Get your website</a>
+    <a href="mailto:angebot@restaurant.website" class="btn l-de">👉 Hol dir deine Website</a>
+  </div>
 </section>
 
 <!-- ===== PRICING ===== -->
 <section class="pricing">
+  <h2 class="section-label l-en">Simple pricing</h2>
+  <h2 class="section-label l-de">Einfache Preise</h2>
+  <p class="section-sub l-en">One price per month. No hidden fees. No setup tricks.</p>
+  <p class="section-sub l-de">Ein Preis pro Monat. Keine versteckten Kosten.</p>
 
-  <!-- Toggle: How we build this -->
   <div class="toggle-bar">
-    <span class="l-en">What we offer</span>
-    <span class="l-de">Was wir bieten</span>
-    <label onclick="toggleTech()">
+    <span class="l-en">What's included</span>
+    <span class="l-de">Was enthalten</span>
+    <label onclick="tT()">
       <div class="toggle-switch" id="tech-toggle"></div>
       <span class="l-en">How we build it</span>
       <span class="l-de">Wie wir's umsetzen</span>
     </label>
   </div>
 
-  <!-- EN -->
+  <!-- ===== EN TIERS ===== -->
   <div class="l-en pricing-grid">
     <div class="card">
       <h3>Basic</h3>
       <div class="price">$15 <small>/ month</small></div>
       <div class="setup">+ $149 one-time setup</div>
       <ul>
-        <li><span class="check">✓</span> 5-page website matching your flyer
-          <span class="tech-detail">Custom HTML/CSS/JS — hand-built by AI, styled to match your exact flyer design. No templates.</span></li>
-        <li><span class="check">✓</span> Full menu with categories & filters
-          <span class="tech-detail">JSON-powered categorized menu with tag filtering (vegan, vegetarian, spicy…). Searchable, sortable.</span></li>
-        <li><span class="check">✓</span> Contact, directions, legal pages
-          <span class="tech-detail">Contact form, OpenStreetMap embed via Nominatim geocoding, Impressum/Privacy (GDPR).</span></li>
-        <li><span class="check">✓</span> Mobile-optimized, GDPR/CCPA compliant
-          <span class="tech-detail">Responsive CSS, cookie consent, legal disclaimers. Hosted in 🇩🇪 Germany (DSGVO-conform).</span></li>
-        <li><span class="check">✓</span> Hosting, updates & backups
-          <span class="tech-detail">Caddy web server on dedicated LXC container. Daily PBS backups. Auto SSL via Let's Encrypt.</span></li>
-        <li><span class="check">✓</span> Subdomain: <strong>your-name</strong>.restaurant.website
-          <span class="tech-detail">Managed DNS via Cloudflare. Free wildcard SSL included.</span></li>
-        <li><span class="check">✓</span> Personal email support
-          <span class="tech-detail">Direct email to your assigned contact. No ticket system. Average response: &lt;4h.</span></li>
+        <li><div class="line"><span class="check">✓</span> 5-page website from your flyer</div><div class="tech-detail">Custom HTML/CSS/JS. We match your colors, fonts, layout exactly. No templates.</div></li>
+        <li><div class="line"><span class="check">✓</span> Full menu — categorized & filterable</div><div class="tech-detail">JSON-powered. Tag filters (vegan, vegetarian, spicy, etc.). Search field. Category tabs.</div></li>
+        <li><div class="line"><span class="check">✓</span> Contact, directions, legal pages</div><div class="tech-detail">Contact form + OpenStreetMap via Nominatim. Impressum & Privacy (GDPR).</div></li>
+        <li><div class="line"><span class="check">✓</span> Mobile-optimized & GDPR-compliant</div><div class="tech-detail">Responsive CSS. Cookie consent. Hosted in 🇩🇪 Germany on Hetzner servers.</div></li>
+        <li><div class="line"><span class="check">✓</span> Hosting, updates & daily backups</div><div class="tech-detail">Caddy web server, dedicated LXC container. Daily PBS backups. Auto SSL (Let's Encrypt).</div></li>
+        <li><div class="line"><span class="check">✓</span> Subdomain: <strong>your-name</strong>.restaurant.website</div><div class="tech-detail">Managed via Cloudflare DNS. Wildcard SSL included.</div></li>
       </ul>
       <a href="mailto:hello@restaurant.website" class="btn btn-primary">Get started</a>
     </div>
@@ -501,22 +561,15 @@ html[data-lang="de"] .l-en { display: none !important; }
     <div class="card featured" data-badge="Popular">
       <h3>Pro</h3>
       <div class="price">$39 <small>/ month</small></div>
+      <div class="cost-row"><span class="cost-green">Our cost: ~$8/mo in extensions — that's it</span></div>
       <div class="setup">+ $349 one-time setup</div>
       <ul>
-        <li><span class="check">✓</span> <strong>Everything in Basic</strong>
-          <span class="tech-detail">Plus: own subdomain, SSL, daily backups, email support — all included from Basic.</span></li>
-        <li><span class="check">✓</span> Online ordering system (pickup & delivery)
-          <span class="tech-detail">TastyIgniter on dedicated LXC container. Menu synced from your HTML site. Delivery zones, minimum orders.</span></li>
-        <li><span class="check">✓</span> Table reservation manager
-          <span class="tech-detail">TastyIgniter Dine-In extension. Time slots, table map, automated confirmations.</span></li>
-        <li><span class="check">✓</span> Custom domain (your-restaurant.com)
-          <span class="tech-detail">Domain registration & management included for 1 year. Auto-renewal handled.</span></li>
-        <li><span class="check">✓</span> Payment processing (Stripe, PayPal)
-          <span class="tech-detail">Stripe Connect integration. 1.5% + €0.25 per transaction. Payouts to your bank account.</span></li>
-        <li><span class="check">✓</span> Order & revenue dashboard
-          <span class="tech-detail">TastyIgniter admin panel. Daily/monthly revenue, popular items, order history export.</span></li>
-        <li><span class="check">✓</span> Email & phone support
-          <span class="tech-detail">Direct hotline during business hours + email. Emergency fixes within 2h.</span></li>
+        <li><div class="line"><span class="check">✓</span> <strong>Everything in Basic</strong></div><div class="tech-detail">Same custom HTML/CSS/JS site. Plus everything below.</div></li>
+        <li><div class="line"><span class="check">✓</span> Online ordering — pickup & delivery</div><div class="tech-detail">TastyIgniter on dedicated LXC. Delivery zones, min. orders, driver assignment. Extension: $49/yr.</div></li>
+        <li><div class="line"><span class="check">✓</span> Table reservation system</div><div class="tech-detail">TastyIgniter Dine-In. Time slots, table map, auto-confirmations. Extension: $49/yr.</div></li>
+        <li><div class="line"><span class="check">✓</span> Custom domain (your-restaurant.com)</div><div class="tech-detail">Domain included for 1 year. Auto-renewal.</div></li>
+        <li><div class="line"><span class="check">✓</span> Take payments (Stripe, PayPal)</div><div class="tech-detail">Stripe Connect. 1.5% + $0.25/transaction.</div></li>
+        <li><div class="line"><span class="check">✓</span> Order & revenue dashboard</div><div class="tech-detail">Admin panel with daily/monthly revenue, popular items, export.</div></li>
       </ul>
       <a href="mailto:hello@restaurant.website" class="btn btn-primary">Get started</a>
     </div>
@@ -524,46 +577,33 @@ html[data-lang="de"] .l-en { display: none !important; }
     <div class="card">
       <h3>Premium</h3>
       <div class="price">$79 <small>/ month</small></div>
+      <div class="cost-row"><span class="cost-green">Our cost: ~$8/mo — yes, same as Pro</span></div>
       <div class="setup">+ $649 one-time setup</div>
       <ul>
-        <li><span class="check">✓</span> <strong>Everything in Pro</strong>
-          <span class="tech-detail">Full ordering, reservations, dashboard, custom domain — all included from Pro.</span></li>
-        <li><span class="check">✓</span> AI-generated food photography & gallery
-          <span class="tech-detail">8 AI-generated food photos via Flux/Midjourney. Plating, lighting, styling matched to your cuisine.</span></li>
-        <li><span class="check">✓</span> Monthly SEO report
-          <span class="tech-detail">Monthly Google ranking check (keyword: your city + "pizza/restaurant/delivery"). Recommendations included.</span></li>
-        <li><span class="check">✓</span> Coupons & gift cards
-          <span class="tech-detail">TastyIgniter Coupons extension. Percentage/fixed discounts, minimum order thresholds, expiry dates.</span></li>
-        <li><span class="check">✓</span> Automatic menu sync
-          <span class="tech-detail">Changes to your website menu auto-sync to TastyIgniter ordering system. Single source of truth.</span></li>
-        <li><span class="check">✓</span> Priority support (24h response)
-          <span class="tech-detail">Dedicated contact, 24h max response time. Includes phone, email, and remote desktop if needed.</span></li>
+        <li><div class="line"><span class="check">✓</span> <strong>Everything in Pro</strong></div><div class="tech-detail">Same features + below.</div></li>
+        <li><div class="line"><span class="check">✓</span> AI food photos & gallery</div><div class="tech-detail">8 custom AI shots (Flux/Midjourney). Cost to us: ~$0.40.</div></li>
+        <li><div class="line"><span class="check">✓</span> Monthly SEO report</div><div class="tech-detail">Google ranking check for your city + keywords.</div></li>
+        <li><div class="line"><span class="check">✓</span> Free Gift Up! coupons & gift cards</div><div class="tech-detail">Coupons extension is free. Percentage/fixed discounts.</div></li>
+        <li><div class="line"><span class="check">✓</span> Auto menu sync</div><div class="tech-detail">Changes sync automatically between HTML site and TastyIgniter.</div></li>
+        <li><div class="line"><span class="check">✓</span> Priority support — 24h response</div><div class="tech-detail">Dedicated contact. Phone + email + remote support.</div></li>
       </ul>
       <a href="mailto:hello@restaurant.website" class="btn btn-primary">Get started</a>
     </div>
   </div>
 
-  <!-- DE -->
+  <!-- ===== DE TIERS ===== -->
   <div class="l-de pricing-grid">
     <div class="card">
       <h3>Basic</h3>
       <div class="price">12 € <small>/ Monat</small></div>
       <div class="setup">+ 99 € einmalig</div>
       <ul>
-        <li><span class="check">✓</span> 5-seitige Website nach deinem Flyer
-          <span class="tech-detail">Individuelles HTML/CSS/JS – per KI gebaut, genau nach deinem Flyer-Design. Keine Templates.</span></li>
-        <li><span class="check">✓</span> Speisekarte mit Kategorien & Filtern
-          <span class="tech-detail">JSON-basierte Karte mit Tag-Filtern (vegan, vegetarisch, scharf…). Suchbar, sortierbar.</span></li>
-        <li><span class="check">✓</span> Kontakt, Anfahrt, Impressum
-          <span class="tech-detail">Kontaktformular, OpenStreetMap-Karte via Nominatim, Impressum/Datenschutz (DSGVO).</span></li>
-        <li><span class="check">✓</span> Mobile-optimiert & DSGVO-konform
-          <span class="tech-detail">Responsives CSS, Cookie-Hinweis, rechtliche Angaben. Gehostet in 🇩🇪 Deutschland.</span></li>
-        <li><span class="check">✓</span> Hosting, Updates & Backups
-          <span class="tech-detail">Caddy-Webserver auf dediziertem LXC-Container. Tägliche PBS-Backups. Automatisches SSL.</span></li>
-        <li><span class="check">✓</span> Subdomain: <strong>dein-name</strong>.restaurant.website
-          <span class="tech-detail">DNS via Cloudflare. Kostenloses Wildcard-SSL inklusive.</span></li>
-        <li><span class="check">✓</span> Persönlicher E-Mail-Support
-          <span class="tech-detail">Direkter Kontakt zu deinem Ansprechpartner. Kein Ticketsystem. Antwort &lt;4h.</span></li>
+        <li><div class="line"><span class="check">✓</span> 5-seitige Website nach deinem Flyer</div><div class="tech-detail">Individuelles HTML/CSS/JS. Wir kopieren deine Farben, Schriften, Layout exakt. Keine Templates.</div></li>
+        <li><div class="line"><span class="check">✓</span> Speisekarte mit Kategorien & Filtern</div><div class="tech-detail">JSON-basiert. Tag-Filter (vegan, vegetarisch, scharf…). Suchfeld. Kategorie-Tabs.</div></li>
+        <li><div class="line"><span class="check">✓</span> Kontakt, Anfahrt, Impressum</div><div class="tech-detail">Kontaktformular + OpenStreetMap via Nominatim. Impressum & Datenschutz (DSGVO).</div></li>
+        <li><div class="line"><span class="check">✓</span> Mobile & DSGVO-konform</div><div class="tech-detail">Responsives CSS. Cookie-Hinweis. Gehostet in 🇩🇪 Deutschland auf Hetzner.</div></li>
+        <li><div class="line"><span class="check">✓</span> Hosting, Updates & Backups</div><div class="tech-detail">Caddy-Webserver, dedizierter LXC-Container. Tägliche PBS-Backups. Auto-SSL.</div></li>
+        <li><div class="line"><span class="check">✓</span> Subdomain: <strong>dein-name</strong>.restaurant.website</div><div class="tech-detail">DNS via Cloudflare. Wildcard-SSL inklusive.</div></li>
       </ul>
       <a href="mailto:angebot@restaurant.website" class="btn btn-primary">Loslegen</a>
     </div>
@@ -571,22 +611,15 @@ html[data-lang="de"] .l-en { display: none !important; }
     <div class="card featured" data-badge="Empfohlen">
       <h3>Pro</h3>
       <div class="price">29 € <small>/ Monat</small></div>
+      <div class="cost-row"><span class="cost-green">Unser Kosten: ~7 €/Monat für Extensions — das ist alles</span></div>
       <div class="setup">+ 249 € einmalig</div>
       <ul>
-        <li><span class="check">✓</span> <strong>Alles aus Basic</strong>
-          <span class="tech-detail">Plus: eigene Subdomain, SSL, tägliche Backups, E-Mail-Support – alles aus Basic.</span></li>
-        <li><span class="check">✓</span> Online-Bestellsystem (Abholung & Lieferung)
-          <span class="tech-detail">TastyIgniter auf eigenem LXC-Container. Menü synchronisiert von deiner HTML-Seite. Lieferzonen.</span></li>
-        <li><span class="check">✓</span> Reservierungs-Manager
-          <span class="tech-detail">TastyIgniter Dine-In. Zeitslots, Tischplan, automatisierte Bestätigungen.</span></li>
-        <li><span class="check">✓</span> Eigene Domain (dein-restaurant.de)
-          <span class="tech-detail">Domain-Registrierung & -Verwaltung für 1 Jahr inklusive. Auto-Verlängerung.</span></li>
-        <li><span class="check">✓</span> Zahlungen (Stripe, PayPal)
-          <span class="tech-detail">Stripe Connect. 1,5% + €0,25 pro Transaktion. Auszahlung auf dein Konto.</span></li>
-        <li><span class="check">✓</span> Bestell- & Einnahmen-Übersicht
-          <span class="tech-detail">TastyIgniter Admin-Panel. Tägliche/monatliche Umsätze, beliebteste Gerichte, Export.</span></li>
-        <li><span class="check">✓</span> E-Mail & Telefon-Support
-          <span class="tech-detail">Direkte Hotline zu Geschäftszeiten + E-Mail. Notfall-Fixes innerhalb von 2h.</span></li>
+        <li><div class="line"><span class="check">✓</span> <strong>Alles aus Basic</strong></div><div class="tech-detail">Gleiche HTML-Website. Plus alles unten.</div></li>
+        <li><div class="line"><span class="check">✓</span> Online-Bestellung (Abholung & Lieferung)</div><div class="tech-detail">TastyIgniter auf eigenem LXC. Lieferzonen, Mindestbestellungen. Extension: 46 €/Jahr.</div></li>
+        <li><div class="line"><span class="check">✓</span> Tisch-Reservierung</div><div class="tech-detail">TastyIgniter Dine-In. Zeitslots, Tischplan, Auto-Bestätigung. Extension: 46 €/Jahr.</div></li>
+        <li><div class="line"><span class="check">✓</span> Eigene Domain (dein-restaurant.de)</div><div class="tech-detail">Domain 1 Jahr inklusive. Auto-Verlängerung.</div></li>
+        <li><div class="line"><span class="check">✓</span> Zahlungen (Stripe, PayPal)</div><div class="tech-detail">Stripe Connect. 1,5% + 0,25 € pro Transaktion.</div></li>
+        <li><div class="line"><span class="check">✓</span> Bestell- & Umsatz-Dashboard</div><div class="tech-detail">Admin-Panel mit Tages-/Monatsumsatz, Top-Gerichten, Export.</div></li>
       </ul>
       <a href="mailto:angebot@restaurant.website" class="btn btn-primary">Loslegen</a>
     </div>
@@ -594,25 +627,43 @@ html[data-lang="de"] .l-en { display: none !important; }
     <div class="card">
       <h3>Premium</h3>
       <div class="price">59 € <small>/ Monat</small></div>
+      <div class="cost-row"><span class="cost-green">Unser Kosten: ~7 €/Monat — ja, gleich wie Pro</span></div>
       <div class="setup">+ 499 € einmalig</div>
       <ul>
-        <li><span class="check">✓</span> <strong>Alles aus Pro</strong>
-          <span class="tech-detail">Bestellsystem, Reservierungen, Dashboard, eigene Domain – alles aus Pro.</span></li>
-        <li><span class="check">✓</span> KI-Food-Fotografie & Galerie
-          <span class="tech-detail">8 KI-generierte Food-Fotos via Flux/Midjourney. Angepasst an deine Küche & dein Styling.</span></li>
-        <li><span class="check">✓</span> Monatliches SEO-Reporting
-          <span class="tech-detail">Monatlicher Google-Ranking-Check (Stadt + "Pizza/Restaurant/Lieferdienst"). Mit Empfehlungen.</span></li>
-        <li><span class="check">✓</span> Gutscheine & Coupons
-          <span class="tech-detail">TastyIgniter Coupons-Erweiterung. Prozentuale/fixe Rabatte, Mindestbestellwerte, Ablaufdaten.</span></li>
-        <li><span class="check">✓</span> Automatische Menü-Synchronisation
-          <span class="tech-detail">Änderungen auf der Website syncen automatisch ins Bestellsystem. Eine Quelle der Wahrheit.</span></li>
-        <li><span class="check">✓</span> Prioritäts-Support (24h)
-          <span class="tech-detail">Dedizierter Ansprechpartner, max. 24h Reaktionszeit. Telefon, E-Mail & Fernwartung.</span></li>
+        <li><div class="line"><span class="check">✓</span> <strong>Alles aus Pro</strong></div><div class="tech-detail">Gleiche Features + unten.</div></li>
+        <li><div class="line"><span class="check">✓</span> KI-Food-Fotografie & Galerie</div><div class="tech-detail">8 KI-Bilder (Flux/Midjourney). Unser Kosten: ~0,40 €.</div></li>
+        <li><div class="line"><span class="check">✓</span> Monatliches SEO-Reporting</div><div class="tech-detail">Google-Ranking-Check für deine Stadt + Keywords.</div></li>
+        <li><div class="line"><span class="check">✓</span> Kostenlose Gutscheine & Coupons</div><div class="tech-detail">Gift Up!-Extension ist kostenlos. Prozentuale/fixe Rabatte.</div></li>
+        <li><div class="line"><span class="check">✓</span> Auto-Menü-Sync</div><div class="tech-detail">Änderungen syncen automatisch zwischen Website und Bestellsystem.</div></li>
+        <li><div class="line"><span class="check">✓</span> Prioritäts-Support (24h)</div><div class="tech-detail">Dedizierter Ansprechpartner. Telefon + E-Mail + Fernwartung.</div></li>
       </ul>
       <a href="mailto:angebot@restaurant.website" class="btn btn-primary">Loslegen</a>
     </div>
   </div>
 </section>
+
+<!-- ===== COST BREAKDOWN (always visible when tech toggle is on) ===== -->
+<div class="l-en cost-breakdown" id="cost-breakdown">
+  <h3>💸 What it costs us vs what you pay</h3>
+  <table class="cost-table">
+    <tr><th>Tier</th><th>Our monthly cost</th><th>What you pay</th><th>We keep</th></tr>
+    <tr><td><strong>Basic</strong></td><td class="green">$0</td><td>$15</td><td class="total">$15</td></tr>
+    <tr><td><strong>Pro</strong></td><td class="green">~$8 (Delivery + Dine-In extensions)</td><td>$39</td><td class="total">~$31</td></tr>
+    <tr><td><strong>Premium</strong></td><td class="green">~$8 (same extensions)</td><td>$79</td><td class="total">~$71</td></tr>
+  </table>
+  <p style="font-size:0.82rem;color:var(--text-subtle);margin-top:0.75rem;">Server hosting, backup storage & support time included. No markup on extensions — you pay exactly what we pay.</p>
+</div>
+
+<div class="l-de cost-breakdown" id="cost-breakdown">
+  <h3>💸 Was es uns kostet vs. was du zahlst</h3>
+  <table class="cost-table">
+    <tr><th>Stufe</th><th>Unsere Kosten</th><th>Du zahlst</th><th>Wir behalten</th></tr>
+    <tr><td><strong>Basic</strong></td><td class="green">0 €</td><td>12 €</td><td class="total">12 €</td></tr>
+    <tr><td><strong>Pro</strong></td><td class="green">~7 € (Delivery + Dine-In Extensions)</td><td>29 €</td><td class="total">~22 €</td></tr>
+    <tr><td><strong>Premium</strong></td><td class="green">~7 € (gleiche Extensions)</td><td>59 €</td><td class="total">~52 €</td></tr>
+  </table>
+  <p style="font-size:0.82rem;color:var(--text-subtle);margin-top:0.75rem;">Server-Hosting, Backup-Speicher & Support inklusive. Kein Aufschlag auf Extensions — du zahlst genau das, was wir zahlen.</p>
+</div>
 
 <!-- ===== ADDONS ===== -->
 <section class="addons">
@@ -625,19 +676,17 @@ html[data-lang="de"] .l-en { display: none !important; }
       <h4 class="l-de">📧 E-Mail-Postfach</h4>
       <div class="price l-en">$3 / month</div>
       <div class="price l-de">3 € / Monat</div>
-      <p class="l-en">Professional email (info@your-restaurant.com). We handle setup & support.</p>
+      <p class="l-en">Professional email (info@your-restaurant.com). Setup & support included.</p>
       <p class="l-de">Professionelle E-Mail (info@dein-restaurant.de). Inklusive Einrichtung & Support.</p>
     </div>
-
     <div class="addon-card">
       <h4 class="l-en">🌐 Custom Domain</h4>
       <h4 class="l-de">🌐 Eigene Domain</h4>
       <div class="price l-en">$12 / year</div>
       <div class="price l-de">10 € / Jahr</div>
       <p class="l-en">Your own .com or .de domain. We buy and manage it for you.</p>
-      <p class="l-de">Deine eigene .de-Domain. Wir kaufen & verwalten sie für dich.</p>
+      <p class="l-de">Deine eigene .de-Domain. Wir kaufen & verwalten sie.</p>
     </div>
-
     <div class="addon-card">
       <h4 class="l-en">📸 AI Food Gallery</h4>
       <h4 class="l-de">📸 KI-Food-Galerie</h4>
@@ -646,7 +695,6 @@ html[data-lang="de"] .l-en { display: none !important; }
       <p class="l-en">8 AI-generated food photos for your site & social media.</p>
       <p class="l-de">8 KI-generierte Food-Fotos für Website & Social Media.</p>
     </div>
-
     <div class="addon-card">
       <h4 class="l-en">📱 Social Media Kit</h4>
       <h4 class="l-de">📱 Social Media Kit</h4>
@@ -658,91 +706,59 @@ html[data-lang="de"] .l-en { display: none !important; }
   </div>
 </section>
 
-<hr class="divider">
-
-<!-- ===== PROCESS ===== -->
+<!-- ===== HOW IT WORKS ===== -->
 <section class="process">
   <h2 class="section-label l-en">How it works</h2>
   <h2 class="section-label l-de">So läuft's</h2>
-
   <div class="process-grid">
-    <div class="step">
-      <div class="num">1</div>
-      <h4 class="l-en">Send us your flyer</h4>
-      <h4 class="l-de">Flyer oder Menü senden</h4>
-      <p class="l-en">PDF or photo — we extract your menu data and design style.</p>
-      <p class="l-de">PDF oder Foto – wir extrahieren Daten & Design.</p>
+    <div class="step"><div class="num">1</div>
+      <h4 class="l-en">Send us your flyer</h4><h4 class="l-de">Flyer oder Menü senden</h4>
+      <p class="l-en">PDF or photo — we extract your menu and design style.</p><p class="l-de">PDF oder Foto – wir extrahieren Daten & Design.</p>
     </div>
-    <div class="step">
-      <div class="num">2</div>
-      <h4 class="l-en">We build it your way</h4>
-      <h4 class="l-de">Design nach deinem Vorbild</h4>
-      <p class="l-en">Your colors, your fonts, your layout — we match your flyer exactly.</p>
-      <p class="l-de">Deine Farben, Schriften, Layout – dein Flyer wird zur Website.</p>
+    <div class="step"><div class="num">2</div>
+      <h4 class="l-en">We build it your way</h4><h4 class="l-de">Design nach deinem Vorbild</h4>
+      <p class="l-en">Your colors, your fonts, your layout — exactly like your flyer.</p><p class="l-de">Deine Farben, Schriften, Layout – exakt wie dein Flyer.</p>
     </div>
-    <div class="step">
-      <div class="num">3</div>
-      <h4 class="l-en">You review & approve</h4>
-      <h4 class="l-de">Du prüfst, wir passen an</h4>
-      <p class="l-en">Preview link. Up to 2 revision rounds included.</p>
-      <p class="l-de">Preview-Link. Maximal 2 Änderungsdurchläufe inklusive.</p>
+    <div class="step"><div class="num">3</div>
+      <h4 class="l-en">You review & approve</h4><h4 class="l-de">Du prüfst, wir passen an</h4>
+      <p class="l-en">Preview link. 2 revision rounds included.</p><p class="l-de">Preview-Link. 2 Änderungsdurchläufe inklusive.</p>
     </div>
-    <div class="step">
-      <div class="num">4</div>
-      <h4 class="l-en">Going live</h4>
-      <h4 class="l-de">Live-Schaltung</h4>
-      <p class="l-en">Domain, SSL, hosting — everything set up. You're online.</p>
-      <p class="l-de">Domain, SSL, Hosting – alles eingerichtet. Du bist online.</p>
+    <div class="step"><div class="num">4</div>
+      <h4 class="l-en">Going live</h4><h4 class="l-de">Live-Schaltung</h4>
+      <p class="l-en">Domain, SSL, hosting — you're online.</p><p class="l-de">Domain, SSL, Hosting – du bist online.</p>
     </div>
   </div>
 </section>
-
-<hr class="divider">
 
 <!-- ===== FAQ ===== -->
 <section class="faq">
   <h2 class="section-label l-en">Questions?</h2>
   <h2 class="section-label l-de">Fragen?</h2>
-
   <div class="faq-grid">
-
     <div class="faq-item">
-      <h4 class="l-en">Do I need technical skills?</h4>
-      <h4 class="l-de">Brauche ich technische Kenntnisse?</h4>
-      <p class="l-en">No. We handle everything — domain, hosting, updates, SSL. You get a link and you're live.</p>
-      <p class="l-de">Nein. Wir kümmern uns um alles – Domain, Hosting, SSL. Du bekommst einen Link.</p>
+      <h4 class="l-en">Do I need technical skills?</h4><h4 class="l-de">Brauche ich technische Kenntnisse?</h4>
+      <p class="l-en">No. We handle everything — domain, hosting, updates, SSL.</p><p class="l-de">Nein. Wir kümmern uns um alles – Domain, Hosting, SSL.</p>
     </div>
-
     <div class="faq-item">
-      <h4 class="l-en">Can I keep my existing domain?</h4>
-      <h4 class="l-de">Kann ich meine Domain behalten?</h4>
-      <p class="l-en">Yes. We'll set up everything on your existing domain, or buy you a new one.</p>
-      <p class="l-de">Ja. Wir richten alles auf deiner Domain ein oder besorgen dir eine neue.</p>
+      <h4 class="l-en">Can I keep my existing domain?</h4><h4 class="l-de">Kann ich meine Domain behalten?</h4>
+      <p class="l-en">Yes. We set up everything on your existing domain.</p><p class="l-de">Ja. Wir richten alles auf deiner Domain ein.</p>
     </div>
-
     <div class="faq-item">
-      <h4 class="l-en">How long does it take?</h4>
-      <h4 class="l-de">Wie lange dauert der Aufbau?</h4>
-      <p class="l-en">Basic: 3–5 business days. Pro with ordering: 7–10 business days.</p>
-      <p class="l-de">Basic: 3–5 Werktage. Pro mit Bestellsystem: 7–10 Werktage.</p>
+      <h4 class="l-en">How long does it take?</h4><h4 class="l-de">Wie lange dauert der Aufbau?</h4>
+      <p class="l-en">Basic: 3–5 days. Pro with ordering: 7–10 days.</p><p class="l-de">Basic: 3–5 Tage. Pro: 7–10 Tage.</p>
     </div>
-
     <div class="faq-item">
-      <h4 class="l-en">What if I cancel?</h4>
-      <h4 class="l-de">Was passiert bei Kündigung?</h4>
-      <p class="l-en">You get all your files and your domain. No lock-in. Month-to-month, cancel anytime.</p>
-      <p class="l-de">Du bekommst alle Dateien und deine Domain. Kein Lock-in. Monatlich kündbar.</p>
+      <h4 class="l-en">What if I cancel?</h4><h4 class="l-de">Was passiert bei Kündigung?</h4>
+      <p class="l-en">You get your files and domain. No lock-in. Cancel anytime.</p><p class="l-de">Du bekommst alle Dateien und deine Domain. Kein Lock-in.</p>
     </div>
-
     <div class="faq-item">
-      <h4 class="l-en">Do I own the source code?</h4>
-      <h4 class="l-de">Gehört mir der Quellcode?</h4>
-      <p class="l-en">Yes. You can export your website anytime and take it elsewhere.</p>
-      <p class="l-de">Ja. Du kannst deine Website jederzeit exportieren und mitnehmen.</p>
+      <h4 class="l-en">Do I own the source code?</h4><h4 class="l-de">Gehört mir der Quellcode?</h4>
+      <p class="l-en">Yes. Export anytime and take it elsewhere.</p><p class="l-de">Ja. Export jederzeit möglich.</p>
     </div>
-
   </div>
 </section>
+
+</div>
 
 <!-- ===== CTA ===== -->
 <section class="cta">
@@ -754,29 +770,15 @@ html[data-lang="de"] .l-en { display: none !important; }
   <a href="mailto:angebot@restaurant.website" class="btn l-de">angebot@restaurant.website</a>
 </section>
 
-</div>
-
-<footer>
-  <div class="container">
-    <span class="l-en">restaurant.website © 2026</span>
-    <span class="l-de">restaurant.website © 2026</span>
-  </div>
-</footer>
+<footer><div class="container">
+  <span class="l-en">restaurant.website © 2026</span>
+  <span class="l-de">restaurant.website © 2026</span>
+</div></footer>
 
 <script>
-function setLang(lang) {
-  document.documentElement.setAttribute('data-lang', lang);
-  document.getElementById('lang-en').classList.toggle('active', lang === 'en');
-  document.getElementById('lang-de').classList.toggle('active', lang === 'de');
-}
-function toggleTech() {
-  const html = document.documentElement;
-  const isOn = html.getAttribute('data-tech') === 'on';
-  html.setAttribute('data-tech', isOn ? 'off' : 'on');
-  document.getElementById('tech-toggle').classList.toggle('active', !isOn);
-}
-// init
-setLang('en');
+function sL(l){document.documentElement.setAttribute('data-lang',l);document.getElementById('lang-en').classList.toggle('active',l==='en');document.getElementById('lang-de').classList.toggle('active',l==='de');}
+function tT(){const h=document.documentElement;const o=h.getAttribute('data-tech')==='on';h.setAttribute('data-tech',o?'off':'on');document.getElementById('tech-toggle').classList.toggle('active',!o);}
+sL('en');
 </script>
 
 </body>

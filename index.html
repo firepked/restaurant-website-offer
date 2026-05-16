@@ -1,25 +1,30 @@
 <!DOCTYPE html>
-<html lang="de" data-lang="de">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Restaurant-Website Angebot – Einfach. Unique. Professionell.</title>
+<title>Restaurant Websites – Custom, hand-crafted, hosted</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0f0f0f;
-  --surface: #1a1a1a;
-  --surface-2: #242424;
-  --border: #333;
-  --text: #e8e8e8;
-  --text-muted: #999;
-  --accent: #e88d3a;
-  --accent-hover: #f09f50;
-  --green: #3a8a5a;
-  --radius: 12px;
+  --bg: #faf7f2;
+  --surface: #ffffff;
+  --surface-2: #f5f0e8;
+  --border: #e6ddd0;
+  --text: #1f1b16;
+  --text-muted: #8a7e72;
+  --text-subtle: #b0a598;
+  --accent: #c8622a;
+  --accent-light: #f0a050;
+  --accent-subtle: #fdf0e4;
+  --green: #2d7a4a;
+  --radius: 16px;
+  --radius-sm: 10px;
   --max-w: 1100px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.04);
+  --shadow-hover: 0 8px 30px rgba(0,0,0,0.08);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,7 +33,7 @@ body {
   font-family: 'DM Sans', system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -41,16 +46,18 @@ body {
   right: 1rem;
   z-index: 100;
   display: flex;
-  background: var(--surface-2);
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
+  box-shadow: var(--shadow);
 }
 .lang-toggle button {
   padding: 0.5rem 1rem;
   font-family: inherit;
   font-size: 0.8rem;
   font-weight: 600;
+  letter-spacing: 0.04em;
   border: none;
   background: transparent;
   color: var(--text-muted);
@@ -59,115 +66,123 @@ body {
 }
 .lang-toggle button.active {
   background: var(--accent);
-  color: #000;
+  color: #fff;
 }
-.lang-toggle button:hover:not(.active) { color: var(--text); }
+.lang-toggle button:not(.active):hover { color: var(--text); }
 
 /* ===== NAV ===== */
 nav {
-  padding: 1.5rem 0;
+  padding: 1.5rem 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
 }
 nav .brand {
   font-weight: 700;
   font-size: 1.1rem;
-  color: var(--accent);
+  letter-spacing: -0.02em;
 }
-nav .lang { display: flex; gap: 0.25rem; }
 
 /* ===== HERO ===== */
 .hero {
-  padding: 5rem 0 4rem;
+  padding: 4rem 0 3rem;
   text-align: center;
+  max-width: 780px;
+  margin: 0 auto;
 }
-.hero .de, .hero .en { display: none; }
-html[data-lang="de"] .hero .de { display: block; }
-html[data-lang="en"] .hero .en { display: block; }
-
 .hero h1 {
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-family: 'Figtree', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.12;
   letter-spacing: -0.03em;
   margin-bottom: 1rem;
 }
-.hero h1 span { color: var(--accent); }
+.hero h1 em {
+  font-style: normal;
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-light);
+  text-decoration-thickness: 4px;
+  text-underline-offset: 6px;
+}
 .hero p {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--text-muted);
-  max-width: 650px;
-  margin: 0 auto 2rem;
+  line-height: 1.6;
 }
 
 /* ===== PRICING ===== */
-.pricing {
-  padding: 3rem 0 5rem;
-}
+.pricing { padding: 2rem 0 4rem; }
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
-  margin-top: 2rem;
+  align-items: start;
 }
 
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 2rem;
+  padding: 2rem 1.75rem;
   display: flex;
   flex-direction: column;
-  transition: border-color 0.2s, transform 0.2s;
+  transition: all 0.25s;
+  box-shadow: var(--shadow);
+  position: relative;
 }
 .card:hover {
-  border-color: var(--accent);
+  border-color: var(--accent-light);
+  box-shadow: var(--shadow-hover);
   transform: translateY(-4px);
 }
 .card.featured {
   border-color: var(--accent);
-  position: relative;
+  border-width: 2px;
+  box-shadow: 0 4px 24px rgba(200,98,42,0.12);
 }
 .card.featured::before {
-  content: 'Empfohlen';
   content: attr(data-badge);
   position: absolute;
-  top: -12px;
+  top: -13px;
   left: 50%;
   transform: translateX(-50%);
   background: var(--accent);
-  color: #000;
+  color: #fff;
   font-size: 0.75rem;
   font-weight: 700;
-  padding: 0.25rem 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.3rem 1.2rem;
   border-radius: 20px;
 }
 
 .card h3 {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.3rem;
+  font-family: 'Figtree', sans-serif;
+  font-size: 1.15rem;
   font-weight: 700;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.15rem;
+  letter-spacing: -0.01em;
 }
 .card .price {
-  font-family: 'Inter', sans-serif;
-  font-size: 2.5rem;
+  font-family: 'Figtree', sans-serif;
+  font-size: 2.75rem;
   font-weight: 800;
-  margin: 0.5rem 0;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0.5rem 0 0.15rem;
 }
 .card .price small {
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--text-muted);
+  letter-spacing: -0.01em;
 }
 .card .setup {
   font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-bottom: 1.5rem;
+  color: var(--text-subtle);
+  margin-bottom: 1.25rem;
 }
 .card ul {
   list-style: none;
@@ -179,18 +194,26 @@ html[data-lang="en"] .hero .en { display: block; }
   display: flex;
   align-items: flex-start;
   gap: 0.5rem;
+  line-height: 1.4;
 }
-.card ul li::before {
-  content: '✓';
+.card ul li .check {
   color: var(--green);
   font-weight: 700;
   flex-shrink: 0;
+  width: 1rem;
+}
+.card ul li strong { font-weight: 600; }
+.card ul li .sub-text {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  display: block;
+  padding-left: 1.5rem;
 }
 
-.btn {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+.card .btn {
+  display: block;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
   font-family: inherit;
   font-size: 0.95rem;
   font-weight: 600;
@@ -200,68 +223,65 @@ html[data-lang="en"] .hero .en { display: block; }
   text-align: center;
   transition: all 0.15s;
   margin-top: 1.5rem;
+  width: 100%;
 }
-.btn-primary {
+.card .btn-primary {
   background: var(--accent);
-  color: #000;
+  color: #fff;
 }
-.btn-primary:hover { background: var(--accent-hover); }
-.btn-outline {
+.card .btn-primary:hover { background: #b05520; transform: scale(1.02); }
+.card .btn-outline {
   background: transparent;
   border: 1px solid var(--border);
   color: var(--text);
 }
-.btn-outline:hover { border-color: var(--accent); }
+.card .btn-outline:hover { border-color: var(--accent); }
 
 /* ===== ADDONS ===== */
-.addons {
-  padding: 3rem 0;
-}
-.addons h2 {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.8rem;
+.addons { padding: 2rem 0 4rem; }
+.section-label {
+  font-family: 'Figtree', sans-serif;
+  font-size: 1.6rem;
   font-weight: 700;
-  margin-bottom: 2rem;
   text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
 }
 .addons-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1rem;
 }
 .addon-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.25rem;
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow);
 }
-.addon-card h4 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-}
+.addon-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
 .addon-card .price {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--accent);
 }
 .addon-card p {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
-  margin-top: 0.25rem;
+  margin-top: 0.2rem;
+  line-height: 1.4;
+}
+
+/* ===== DIVIDER ===== */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  max-width: 200px;
+  margin: 0 auto;
 }
 
 /* ===== PROCESS ===== */
-.process {
-  padding: 4rem 0;
-}
-.process h2 {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 3rem;
-  text-align: center;
-}
+.process { padding: 4rem 0; }
 .process-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -272,373 +292,379 @@ html[data-lang="en"] .hero .en { display: block; }
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.5rem;
+  padding: 1.75rem 1.5rem;
   counter-increment: step;
   position: relative;
+  box-shadow: var(--shadow);
 }
-.step::before {
-  content: counter(step);
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  width: 32px;
-  height: 32px;
+.step .num {
+  width: 36px;
+  height: 36px;
   background: var(--accent);
-  color: #000;
+  color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
 }
-.step h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
-.step p { font-size: 0.85rem; color: var(--text-muted); }
+.step h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; }
+.step p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
 
 /* ===== FAQ ===== */
-.faq {
-  padding: 4rem 0;
-}
-.faq h2 {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.8rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 2rem;
+.faq { padding: 3rem 0 4rem; }
+.faq-grid {
+  max-width: 700px;
+  margin: 0 auto;
 }
 .faq-item {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   padding: 1.25rem 1.5rem;
   margin-bottom: 0.75rem;
+  box-shadow: var(--shadow);
 }
-.faq-item h4 {
+.faq-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; }
+.faq-item p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
+
+/* ===== CTA ===== */
+.cta {
+  text-align: center;
+  padding: 3rem 0 4rem;
+}
+.cta h2 {
+  font-family: 'Figtree', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+.cta p { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+.cta .btn {
+  display: inline-block;
+  padding: 0.9rem 2.5rem;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
   font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s;
 }
-.faq-item p {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
+.cta .btn:hover { background: #b05520; transform: scale(1.03); }
 
 /* ===== FOOTER ===== */
 footer {
   border-top: 1px solid var(--border);
   padding: 2rem 0;
   text-align: center;
-  font-size: 0.85rem;
-  color: var(--text-muted);
+  font-size: 0.82rem;
+  color: var(--text-subtle);
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .pricing-grid { grid-template-columns: 1fr; }
   .addons-grid { grid-template-columns: 1fr; }
   .process-grid { grid-template-columns: 1fr; }
   .hero h1 { font-size: 1.8rem; }
 }
 
-/* Language visibility */
-html[data-lang="de"] .en-only { display: none !important; }
-html[data-lang="en"] .de-only { display: none !important; }
-html[data-lang="de"] .pricing .en,
-html[data-lang="de"] .addons .en,
-html[data-lang="de"] .faq .en { display: none !important; }
-html[data-lang="en"] .pricing .de,
-html[data-lang="en"] .addons .de,
-html[data-lang="en"] .faq .de { display: none !important; }
-html[data-lang="de"] .step .en,
-html[data-lang="en"] .step .de { display: none !important; }
+/* ===== LANGUAGE VISIBILITY ===== */
+html[data-lang="en"] .l-de { display: none !important; }
+html[data-lang="de"] .l-en { display: none !important; }
 </style>
 </head>
 <body>
 
 <div class="lang-toggle">
-  <button onclick="setLang('de')" id="lang-de" class="active">DE</button>
-  <button onclick="setLang('en')" id="lang-en">EN</button>
+  <button onclick="setLang('en')" id="lang-en" class="active">EN</button>
+  <button onclick="setLang('de')" id="lang-de">DE</button>
 </div>
 
 <div class="container">
 
 <!-- NAV -->
 <nav>
-  <span class="brand">restaurant<span style="color:var(--text)">.website</span></span>
+  <span class="brand"><span style="color:var(--accent)">restaurant</span>.website</span>
 </nav>
 
-<!-- HERO -->
+<!-- ===== HERO ===== -->
 <section class="hero">
-  <div class="de">
-    <h1>Dein Restaurant verdient<br>eine <span>richtige</span> Website.</h1>
-    <p>Kein Template. Kein Baukasten. Wir bauen dir eine Website, die so einzigartig ist wie dein Laden – basierend auf deiner Speisekarte und deinem Flyer. Inklusive Hosting, Updates und persönlichem Support.</p>
-  </div>
-  <div class="en">
-    <h1>Your restaurant deserves<br>a <span>real</span> website.</h1>
-    <p>No template. No page builder. We build you a website as unique as your restaurant — based on your menu and your flyer. Includes hosting, updates, and personal support.</p>
-  </div>
+  <h1 class="l-en">Your restaurant deserves a <em>real</em> website.</h1>
+  <h1 class="l-de">Dein Restaurant verdient eine <em>richtige</em> Website.</h1>
+
+  <p class="l-en">No template. No page builder. We build you a website as unique as your restaurant — based on your menu and your flyer. Hosting, updates, and support included.</p>
+  <p class="l-de">Kein Template. Kein Baukasten. Wir bauen dir eine Website, die so einzigartig ist wie dein Laden – basierend auf deiner Speisekarte und deinem Flyer. Inklusive Hosting, Updates und Support.</p>
 </section>
 
-<!-- PRICING -->
-<section class="pricing" id="pricing">
+<!-- ===== PRICING ===== -->
+<section class="pricing">
 
-  <div class="de">
-    <div class="pricing-grid">
-      <div class="card">
-        <h3>Basic</h3>
-        <div class="price">29 € <small>/ Monat</small></div>
-        <div class="setup">+ 199 € einmalige Einrichtung</div>
-        <ul>
-          <li>5-seitige Website nach deinem Flyer-Design</li>
-          <li>Komplette Speisekarte mit Kategorien & Filtern</li>
-          <li>Kontakt, Anfahrt & Impressum</li>
-          <li>Mobile-optimiert & DSGVO-konform</li>
-          <li>Hosting, Updates & Backups inklusive</li>
-          <li>Subdomain: <em>dein-restaurant</em>.restaurant.website</li>
-          <li>Persönlicher Support (E-Mail)</li>
-        </ul>
-        <a href="mailto:angebot@restaurant.website" class="btn btn-primary">Anfragen</a>
-      </div>
+  <!-- EN -->
+  <div class="l-en pricing-grid">
+    <div class="card">
+      <h3>Basic</h3>
+      <div class="price">$15 <small>/ month</small></div>
+      <div class="setup">+ $149 one-time setup</div>
+      <ul>
+        <li><span class="check">✓</span> 5-page website matching your flyer</li>
+        <li><span class="check">✓</span> Full menu with categories & filters</li>
+        <li><span class="check">✓</span> Contact, directions, legal pages</li>
+        <li><span class="check">✓</span> Mobile-optimized, GDPR/CCPA compliant</li>
+        <li><span class="check">✓</span> Hosting, updates & backups</li>
+        <li><span class="check">✓</span> Subdomain: <strong>your-name</strong>.restaurant.website</li>
+        <li><span class="check">✓</span> Personal email support</li>
+      </ul>
+      <a href="mailto:hello@restaurant.website" class="btn btn-primary">Get started</a>
+    </div>
 
-      <div class="card featured" data-badge="Empfohlen">
-        <h3>Pro</h3>
-        <div class="price">59 € <small>/ Monat</small></div>
-        <div class="setup">+ 399 € einmalige Einrichtung</div>
-        <ul>
-          <li><strong>Alles aus Basic</strong></li>
-          <li>Online-Bestellsystem (Abholung & Lieferung)</li>
-          <li>Reservierungs-Manager für Tische</li>
-          <li>Eigene Domain (z. B. <em>dein-restaurant.de</em>)</li>
-          <li>Zahlungsabwicklung (Stripe, PayPal)</li>
-          <li>Bestellungen & Einnahmen auf einen Blick</li>
-          <li>E-Mail-Support & Telefon-Hotline</li>
-        </ul>
-        <a href="mailto:angebot@restaurant.website" class="btn btn-primary">Anfragen</a>
-      </div>
+    <div class="card featured" data-badge="Popular">
+      <h3>Pro</h3>
+      <div class="price">$39 <small>/ month</small></div>
+      <div class="setup">+ $349 one-time setup</div>
+      <ul>
+        <li><span class="check">✓</span> <strong>Everything in Basic</strong></li>
+        <li><span class="check">✓</span> Online ordering system (pickup & delivery)</li>
+        <li><span class="check">✓</span> Table reservation manager</li>
+        <li><span class="check">✓</span> Custom domain (your-restaurant.com)</li>
+        <li><span class="check">✓</span> Payment processing (Stripe, PayPal)</li>
+        <li><span class="check">✓</span> Order & revenue dashboard</li>
+        <li><span class="check">✓</span> Email & phone support</li>
+      </ul>
+      <a href="mailto:hello@restaurant.website" class="btn btn-primary">Get started</a>
+    </div>
 
-      <div class="card">
-        <h3>Premium</h3>
-        <div class="price">99 € <small>/ Monat</small></div>
-        <div class="setup">+ 699 € einmalige Einrichtung</div>
-        <ul>
-          <li><strong>Alles aus Pro</strong></li>
-          <li>KI-generierte Food-Fotografie & Galerie</li>
-          <li>3 business E-Mail-Postfächer (G Suite Alternative)</li>
-          <li>Erweiterte Bestell-Extensions (Gutscheine, Coupons)</li>
-          <li>Automatische Menü-Synchronisation</li>
-          <li>Monatliches SEO-Reporting</li>
-          <li>Prioritäts-Support (24h Reaktionszeit)</li>
-        </ul>
-        <a href="mailto:angebot@restaurant.website" class="btn btn-primary">Anfragen</a>
-      </div>
+    <div class="card">
+      <h3>Premium</h3>
+      <div class="price">$79 <small>/ month</small></div>
+      <div class="setup">+ $649 one-time setup</div>
+      <ul>
+        <li><span class="check">✓</span> <strong>Everything in Pro</strong></li>
+        <li><span class="check">✓</span> AI-generated food photography & gallery</li>
+        <li><span class="check">✓</span> Monthly SEO report</li>
+        <li><span class="check">✓</span> Coupons & gift cards</li>
+        <li><span class="check">✓</span> Automatic menu sync</li>
+        <li><span class="check">✓</span> Priority support (24h response)</li>
+      </ul>
+      <a href="mailto:hello@restaurant.website" class="btn btn-primary">Get started</a>
     </div>
   </div>
 
-  <div class="en">
-    <div class="pricing-grid">
-      <div class="card">
-        <h3>Basic</h3>
-        <div class="price">$39 <small>/ month</small></div>
-        <div class="setup">+ $249 one-time setup</div>
-        <ul>
-          <li>5-page website matching your flyer design</li>
-          <li>Complete menu with categories & filters</li>
-          <li>Contact, directions & legal pages</li>
-          <li>Mobile-optimized & GDPR/CCPA compliant</li>
-          <li>Hosting, updates & backups included</li>
-          <li>Subdomain: <em>your-restaurant</em>.restaurant.website</li>
-          <li>Personal email support</li>
-        </ul>
-        <a href="mailto:hello@restaurant.website" class="btn btn-primary">Get started</a>
-      </div>
+  <!-- DE -->
+  <div class="l-de pricing-grid">
+    <div class="card">
+      <h3>Basic</h3>
+      <div class="price">12 € <small>/ Monat</small></div>
+      <div class="setup">+ 99 € einmalig</div>
+      <ul>
+        <li><span class="check">✓</span> 5-seitige Website nach deinem Flyer</li>
+        <li><span class="check">✓</span> Speisekarte mit Kategorien & Filtern</li>
+        <li><span class="check">✓</span> Kontakt, Anfahrt, Impressum</li>
+        <li><span class="check">✓</span> Mobile-optimiert & DSGVO-konform</li>
+        <li><span class="check">✓</span> Hosting, Updates & Backups</li>
+        <li><span class="check">✓</span> Subdomain: <strong>dein-name</strong>.restaurant.website</li>
+        <li><span class="check">✓</span> Persönlicher E-Mail-Support</li>
+      </ul>
+      <a href="mailto:angebot@restaurant.website" class="btn btn-primary">Loslegen</a>
+    </div>
 
-      <div class="card featured" data-badge="Popular">
-        <h3>Pro</h3>
-        <div class="price">$79 <small>/ month</small></div>
-        <div class="setup">+ $499 one-time setup</div>
-        <ul>
-          <li><strong>Everything in Basic</strong></li>
-          <li>Online ordering system (pickup & delivery)</li>
-          <li>Table reservation manager</li>
-          <li>Your own domain (e.g. <em>your-restaurant.com</em>)</li>
-          <li>Payment processing (Stripe, PayPal)</li>
-          <li>Order & revenue dashboard</li>
-          <li>Email & phone support</li>
-        </ul>
-        <a href="mailto:hello@restaurant.website" class="btn btn-primary">Get started</a>
-      </div>
+    <div class="card featured" data-badge="Empfohlen">
+      <h3>Pro</h3>
+      <div class="price">29 € <small>/ Monat</small></div>
+      <div class="setup">+ 249 € einmalig</div>
+      <ul>
+        <li><span class="check">✓</span> <strong>Alles aus Basic</strong></li>
+        <li><span class="check">✓</span> Online-Bestellsystem (Abholung & Lieferung)</li>
+        <li><span class="check">✓</span> Reservierungs-Manager</li>
+        <li><span class="check">✓</span> Eigene Domain (dein-restaurant.de)</li>
+        <li><span class="check">✓</span> Zahlungen (Stripe, PayPal)</li>
+        <li><span class="check">✓</span> Bestell- & Einnahmen-Übersicht</li>
+        <li><span class="check">✓</span> E-Mail & Telefon-Support</li>
+      </ul>
+      <a href="mailto:angebot@restaurant.website" class="btn btn-primary">Loslegen</a>
+    </div>
 
-      <div class="card">
-        <h3>Premium</h3>
-        <div class="price">$129 <small>/ month</small></div>
-        <div class="setup">+ $899 one-time setup</div>
-        <ul>
-          <li><strong>Everything in Pro</strong></li>
-          <li>AI-generated food photography & gallery</li>
-          <li>3 business email mailboxes</li>
-          <li>Advanced extensions (coupons, gift cards)</li>
-          <li>Automatic menu sync</li>
-          <li>Monthly SEO report</li>
-          <li>Priority support (24h response time)</li>
-        </ul>
-        <a href="mailto:hello@restaurant.website" class="btn btn-primary">Get started</a>
-      </div>
+    <div class="card">
+      <h3>Premium</h3>
+      <div class="price">59 € <small>/ Monat</small></div>
+      <div class="setup">+ 499 € einmalig</div>
+      <ul>
+        <li><span class="check">✓</span> <strong>Alles aus Pro</strong></li>
+        <li><span class="check">✓</span> KI-Food-Fotografie & Galerie</li>
+        <li><span class="check">✓</span> Monatliches SEO-Reporting</li>
+        <li><span class="check">✓</span> Gutscheine & Coupons</li>
+        <li><span class="check">✓</span> Automatische Menü-Synchronisation</li>
+        <li><span class="check">✓</span> Prioritäts-Support (24h)</li>
+      </ul>
+      <a href="mailto:angebot@restaurant.website" class="btn btn-primary">Loslegen</a>
     </div>
   </div>
 </section>
 
-<!-- ADDONS -->
+<!-- ===== ADDONS ===== -->
 <section class="addons">
-  <h2 class="de">Optionale Extras</h2>
-  <h2 class="en">Optional Add-ons</h2>
+  <h2 class="section-label l-en">Add-ons</h2>
+  <h2 class="section-label l-de">Extras</h2>
 
-  <div class="de addons-grid">
+  <div class="addons-grid">
     <div class="addon-card">
-      <h4>Eigene Domain</h4>
-      <div class="price">+ 1 € / Monat</div>
-      <p>Deine eigene .de-Domain inkl. Einrichtung & Verwaltung</p>
+      <h4 class="l-en">📧 Email Mailbox</h4>
+      <h4 class="l-de">📧 E-Mail-Postfach</h4>
+      <div class="price l-en">$3 / month</div>
+      <div class="price l-de">3 € / Monat</div>
+      <p class="l-en">Professional email (info@your-restaurant.com). We handle setup & support.</p>
+      <p class="l-de">Professionelle E-Mail (info@dein-restaurant.de). Inklusive Einrichtung & Support.</p>
     </div>
-    <div class="addon-card">
-      <h4>E-Mail-Postfach</h4>
-      <div class="price">+ 3 € / Monat</div>
-      <p>Professionelle E-Mail-Adresse (info@dein-restaurant.de)</p>
-    </div>
-    <div class="addon-card">
-      <h4>AI-Galerie</h4>
-      <div class="price">+ 49 € einmalig</div>
-      <p>8 KI-generierte Food-Fotos für deine Website & Social Media</p>
-    </div>
-    <div class="addon-card">
-      <h4>Social Media Kit</h4>
-      <div class="price">+ 29 € einmalig</div>
-      <p>Facebook & Instagram Profil-Bilder, Cover & Beitragsvorlagen</p>
-    </div>
-  </div>
 
-  <div class="en addons-grid">
     <div class="addon-card">
-      <h4>Custom Domain</h4>
-      <div class="price">+ $2 / month</div>
-      <p>Your own .com/.net domain including setup & management</p>
+      <h4 class="l-en">🌐 Custom Domain</h4>
+      <h4 class="l-de">🌐 Eigene Domain</h4>
+      <div class="price l-en">$12 / year</div>
+      <div class="price l-de">10 € / Jahr</div>
+      <p class="l-en">Your own .com or .de domain. We buy and manage it for you.</p>
+      <p class="l-de">Deine eigene .de-Domain. Wir kaufen & verwalten sie für dich.</p>
     </div>
+
     <div class="addon-card">
-      <h4>Email Mailbox</h4>
-      <div class="price">+ $4 / month</div>
-      <p>Professional email (info@your-restaurant.com)</p>
+      <h4 class="l-en">📸 AI Food Gallery</h4>
+      <h4 class="l-de">📸 KI-Food-Galerie</h4>
+      <div class="price l-en">$49 one-time</div>
+      <div class="price l-de">39 € einmalig</div>
+      <p class="l-en">8 AI-generated food photos for your site & social media.</p>
+      <p class="l-de">8 KI-generierte Food-Fotos für Website & Social Media.</p>
     </div>
+
     <div class="addon-card">
-      <h4>AI Gallery</h4>
-      <div class="price">+ $69 one-time</div>
-      <p>8 AI-generated food photos for your website & social media</p>
-    </div>
-    <div class="addon-card">
-      <h4>Social Media Kit</h4>
-      <div class="price">+ $39 one-time</div>
-      <p>Facebook & Instagram profile pics, covers & post templates</p>
+      <h4 class="l-en">📱 Social Media Kit</h4>
+      <h4 class="l-de">📱 Social Media Kit</h4>
+      <div class="price l-en">$29 one-time</div>
+      <div class="price l-de">25 € einmalig</div>
+      <p class="l-en">Profile pics, covers & post templates for Instagram & Facebook.</p>
+      <p class="l-de">Profilbilder, Cover & Vorlagen für Instagram & Facebook.</p>
     </div>
   </div>
 </section>
 
-<!-- PROCESS -->
+<hr class="divider">
+
+<!-- ===== PROCESS ===== -->
 <section class="process">
-  <h2 class="de">So läuft's</h2>
-  <h2 class="en">How it works</h2>
+  <h2 class="section-label l-en">How it works</h2>
+  <h2 class="section-label l-de">So läuft's</h2>
 
   <div class="process-grid">
     <div class="step">
-      <h4 class="de">Flyer oder Menü senden</h4>
-      <h4 class="en">Send us your flyer or menu</h4>
-      <p class="de">PDF, Foto – egal. Wir extrahieren alle Daten und dein Design.</p>
-      <p class="en">PDF, photo, doesn't matter. We extract all data and your design.</p>
+      <div class="num">1</div>
+      <h4 class="l-en">Send us your flyer</h4>
+      <h4 class="l-de">Flyer oder Menü senden</h4>
+      <p class="l-en">PDF or photo — we extract your menu data and design style.</p>
+      <p class="l-de">PDF oder Foto – wir extrahieren Daten & Design.</p>
     </div>
     <div class="step">
-      <h4 class="de">Design nach deinem Vorbild</h4>
-      <h4 class="en">We match your style</h4>
-      <p class="de">Farben, Schriftarten, Layout – dein Flyer wird zur Website.</p>
-      <p class="en">Colors, fonts, layout – your flyer becomes your website.</p>
+      <div class="num">2</div>
+      <h4 class="l-en">We build it your way</h4>
+      <h4 class="l-de">Design nach deinem Vorbild</h4>
+      <p class="l-en">Your colors, your fonts, your layout — we match your flyer exactly.</p>
+      <p class="l-de">Deine Farben, Schriften, Layout – dein Flyer wird zur Website.</p>
     </div>
     <div class="step">
-      <h4 class="de">Du checkst, wir passen an</h4>
-      <h4 class="en">You review, we adjust</h4>
-      <p class="de">Preview-Link. maximal 2 Änderungsdurchläufe inklusive.</p>
-      <p class="en">Preview link. Up to 2 revision rounds included.</p>
+      <div class="num">3</div>
+      <h4 class="l-en">You review & approve</h4>
+      <h4 class="l-de">Du prüfst, wir passen an</h4>
+      <p class="l-en">Preview link. Up to 2 revision rounds included.</p>
+      <p class="l-de">Preview-Link. Maximal 2 Änderungsdurchläufe inklusive.</p>
     </div>
     <div class="step">
-      <h4 class="de">Live-Schaltung</h4>
-      <h4 class="en">Going live</h4>
-      <p class="de">Domain, SSL, Hosting – alles eingerichtet. Du bekommst einen Link.</p>
-      <p class="en">Domain, SSL, hosting – all set up. You get a link.</p>
+      <div class="num">4</div>
+      <h4 class="l-en">Going live</h4>
+      <h4 class="l-de">Live-Schaltung</h4>
+      <p class="l-en">Domain, SSL, hosting — everything set up. You're online.</p>
+      <p class="l-de">Domain, SSL, Hosting – alles eingerichtet. Du bist online.</p>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
+<hr class="divider">
+
+<!-- ===== FAQ ===== -->
 <section class="faq">
-  <h2 class="de">Häufige Fragen</h2>
-  <h2 class="en">Frequently asked questions</h2>
+  <h2 class="section-label l-en">Questions?</h2>
+  <h2 class="section-label l-de">Fragen?</h2>
 
-  <div class="de">
-    <div class="faq-item">
-      <h4>Brauche ich technische Kenntnisse?</h4>
-      <p>Nein. Wir kümmern uns um alles – Domain, Hosting, Updates, SSL. Du bekommst einen Link und kannst loslegen.</p>
-    </div>
-    <div class="faq-item">
-      <h4>Kann ich meine bestehende Domain behalten?</h4>
-      <p>Ja. Wir richten alles auf deiner Domain ein oder besorgen dir eine neue. Deine Wahl.</p>
-    </div>
-    <div class="faq-item">
-      <h4>Wie lange dauert der Aufbau?</h4>
-      <p>Basic-Website: 3–5 Werktage. Pro mit Bestellsystem: 7–10 Werktage.</p>
-    </div>
-    <div class="faq-item">
-      <h4>Was passiert wenn ich kündige?</h4>
-      <p>Du bekommst alle Dateien und deine Domain. Keine Vendor-Lock-in. Monatliche Kündigung möglich.</p>
-    </div>
-    <div class="faq-item">
-      <h4>Bekomme ich Zugriff auf den Quellcode?</h4>
-      <p>Ja. Du kannst deine Website jederzeit exportieren und zu einem anderen Anbieter mitnehmen.</p>
-    </div>
-  </div>
+  <div class="faq-grid">
 
-  <div class="en">
     <div class="faq-item">
-      <h4>Do I need technical skills?</h4>
-      <p>No. We handle everything – domain, hosting, updates, SSL. You get a link and you're live.</p>
+      <h4 class="l-en">Do I need technical skills?</h4>
+      <h4 class="l-de">Brauche ich technische Kenntnisse?</h4>
+      <p class="l-en">No. We handle everything — domain, hosting, updates, SSL. You get a link and you're live.</p>
+      <p class="l-de">Nein. Wir kümmern uns um alles – Domain, Hosting, SSL. Du bekommst einen Link.</p>
     </div>
+
     <div class="faq-item">
-      <h4>Can I keep my existing domain?</h4>
-      <p>Yes. We set everything up on your domain or get you a new one. Your choice.</p>
+      <h4 class="l-en">Can I keep my existing domain?</h4>
+      <h4 class="l-de">Kann ich meine Domain behalten?</h4>
+      <p class="l-en">Yes. We'll set up everything on your existing domain, or buy you a new one.</p>
+      <p class="l-de">Ja. Wir richten alles auf deiner Domain ein oder besorgen dir eine neue.</p>
     </div>
+
     <div class="faq-item">
-      <h4>How long does it take?</h4>
-      <p>Basic website: 3–5 business days. Pro with ordering system: 7–10 business days.</p>
+      <h4 class="l-en">How long does it take?</h4>
+      <h4 class="l-de">Wie lange dauert der Aufbau?</h4>
+      <p class="l-en">Basic: 3–5 business days. Pro with ordering: 7–10 business days.</p>
+      <p class="l-de">Basic: 3–5 Werktage. Pro mit Bestellsystem: 7–10 Werktage.</p>
     </div>
+
     <div class="faq-item">
-      <h4>What if I cancel?</h4>
-      <p>You get all files and your domain. No vendor lock-in. Monthly cancellation possible.</p>
+      <h4 class="l-en">What if I cancel?</h4>
+      <h4 class="l-de">Was passiert bei Kündigung?</h4>
+      <p class="l-en">You get all your files and your domain. No lock-in. Month-to-month, cancel anytime.</p>
+      <p class="l-de">Du bekommst alle Dateien und deine Domain. Kein Lock-in. Monatlich kündbar.</p>
     </div>
+
     <div class="faq-item">
-      <h4>Do I get access to the source code?</h4>
-      <p>Yes. You can export your website anytime and take it to another provider.</p>
+      <h4 class="l-en">Do I own the source code?</h4>
+      <h4 class="l-de">Gehört mir der Quellcode?</h4>
+      <p class="l-en">Yes. You can export your website anytime and take it elsewhere.</p>
+      <p class="l-de">Ja. Du kannst deine Website jederzeit exportieren und mitnehmen.</p>
     </div>
+
   </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta">
+  <h2 class="l-en">Ready to get started?</h2>
+  <h2 class="l-de">Bereit loszulegen?</h2>
+  <p class="l-en">Send us your menu and we'll build your website.</p>
+  <p class="l-de">Schick uns deine Speisekarte und wir bauen deine Website.</p>
+  <a href="mailto:hello@restaurant.website" class="btn l-en">hello@restaurant.website</a>
+  <a href="mailto:angebot@restaurant.website" class="btn l-de">angebot@restaurant.website</a>
 </section>
 
 </div>
 
 <footer>
   <div class="container">
-    <p class="de">Restaurant Websites © 2026 – Maßgeschneiderte Websites für Restaurants</p>
-    <p class="en">Restaurant Websites © 2026 – Custom websites for restaurants</p>
+    <span class="l-en">restaurant.website © 2026</span>
+    <span class="l-de">restaurant.website © 2026</span>
   </div>
 </footer>
 
 <script>
 function setLang(lang) {
   document.documentElement.setAttribute('data-lang', lang);
-  document.getElementById('lang-de').classList.toggle('active', lang === 'de');
   document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+  document.getElementById('lang-de').classList.toggle('active', lang === 'de');
 }
+// init
+setLang('en');
 </script>
 
 </body>

@@ -114,6 +114,61 @@ nav .brand {
 
 /* ===== PRICING ===== */
 .pricing { padding: 2rem 0 4rem; }
+
+.toggle-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+.toggle-bar label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+.toggle-switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background: var(--border);
+  border-radius: 12px;
+  transition: background 0.2s;
+}
+.toggle-switch.active { background: var(--accent); }
+.toggle-switch::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+.toggle-switch.active::after { transform: translateX(20px); }
+
+.tech-detail {
+  display: none;
+  font-size: 0.78rem;
+  color: var(--text-subtle);
+  padding: 0.25rem 0 0 1.5rem;
+  line-height: 1.4;
+}
+.tech-detail.show { display: block; }
+.tech-detail code {
+  background: var(--surface-2);
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+html[data-tech="on"] .tech-detail { display: block; }
+
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -407,6 +462,17 @@ html[data-lang="de"] .l-en { display: none !important; }
 <!-- ===== PRICING ===== -->
 <section class="pricing">
 
+  <!-- Toggle: How we build this -->
+  <div class="toggle-bar">
+    <span class="l-en">What we offer</span>
+    <span class="l-de">Was wir bieten</span>
+    <label onclick="toggleTech()">
+      <div class="toggle-switch" id="tech-toggle"></div>
+      <span class="l-en">How we build it</span>
+      <span class="l-de">Wie wir's umsetzen</span>
+    </label>
+  </div>
+
   <!-- EN -->
   <div class="l-en pricing-grid">
     <div class="card">
@@ -414,13 +480,20 @@ html[data-lang="de"] .l-en { display: none !important; }
       <div class="price">$15 <small>/ month</small></div>
       <div class="setup">+ $149 one-time setup</div>
       <ul>
-        <li><span class="check">✓</span> 5-page website matching your flyer</li>
-        <li><span class="check">✓</span> Full menu with categories & filters</li>
-        <li><span class="check">✓</span> Contact, directions, legal pages</li>
-        <li><span class="check">✓</span> Mobile-optimized, GDPR/CCPA compliant</li>
-        <li><span class="check">✓</span> Hosting, updates & backups</li>
-        <li><span class="check">✓</span> Subdomain: <strong>your-name</strong>.restaurant.website</li>
-        <li><span class="check">✓</span> Personal email support</li>
+        <li><span class="check">✓</span> 5-page website matching your flyer
+          <span class="tech-detail">Custom HTML/CSS/JS — hand-built by AI, styled to match your exact flyer design. No templates.</span></li>
+        <li><span class="check">✓</span> Full menu with categories & filters
+          <span class="tech-detail">JSON-powered categorized menu with tag filtering (vegan, vegetarian, spicy…). Searchable, sortable.</span></li>
+        <li><span class="check">✓</span> Contact, directions, legal pages
+          <span class="tech-detail">Contact form, OpenStreetMap embed via Nominatim geocoding, Impressum/Privacy (GDPR).</span></li>
+        <li><span class="check">✓</span> Mobile-optimized, GDPR/CCPA compliant
+          <span class="tech-detail">Responsive CSS, cookie consent, legal disclaimers. Hosted in 🇩🇪 Germany (DSGVO-conform).</span></li>
+        <li><span class="check">✓</span> Hosting, updates & backups
+          <span class="tech-detail">Caddy web server on dedicated LXC container. Daily PBS backups. Auto SSL via Let's Encrypt.</span></li>
+        <li><span class="check">✓</span> Subdomain: <strong>your-name</strong>.restaurant.website
+          <span class="tech-detail">Managed DNS via Cloudflare. Free wildcard SSL included.</span></li>
+        <li><span class="check">✓</span> Personal email support
+          <span class="tech-detail">Direct email to your assigned contact. No ticket system. Average response: &lt;4h.</span></li>
       </ul>
       <a href="mailto:hello@restaurant.website" class="btn btn-primary">Get started</a>
     </div>
@@ -430,13 +503,20 @@ html[data-lang="de"] .l-en { display: none !important; }
       <div class="price">$39 <small>/ month</small></div>
       <div class="setup">+ $349 one-time setup</div>
       <ul>
-        <li><span class="check">✓</span> <strong>Everything in Basic</strong></li>
-        <li><span class="check">✓</span> Online ordering system (pickup & delivery)</li>
-        <li><span class="check">✓</span> Table reservation manager</li>
-        <li><span class="check">✓</span> Custom domain (your-restaurant.com)</li>
-        <li><span class="check">✓</span> Payment processing (Stripe, PayPal)</li>
-        <li><span class="check">✓</span> Order & revenue dashboard</li>
-        <li><span class="check">✓</span> Email & phone support</li>
+        <li><span class="check">✓</span> <strong>Everything in Basic</strong>
+          <span class="tech-detail">Plus: own subdomain, SSL, daily backups, email support — all included from Basic.</span></li>
+        <li><span class="check">✓</span> Online ordering system (pickup & delivery)
+          <span class="tech-detail">TastyIgniter on dedicated LXC container. Menu synced from your HTML site. Delivery zones, minimum orders.</span></li>
+        <li><span class="check">✓</span> Table reservation manager
+          <span class="tech-detail">TastyIgniter Dine-In extension. Time slots, table map, automated confirmations.</span></li>
+        <li><span class="check">✓</span> Custom domain (your-restaurant.com)
+          <span class="tech-detail">Domain registration & management included for 1 year. Auto-renewal handled.</span></li>
+        <li><span class="check">✓</span> Payment processing (Stripe, PayPal)
+          <span class="tech-detail">Stripe Connect integration. 1.5% + €0.25 per transaction. Payouts to your bank account.</span></li>
+        <li><span class="check">✓</span> Order & revenue dashboard
+          <span class="tech-detail">TastyIgniter admin panel. Daily/monthly revenue, popular items, order history export.</span></li>
+        <li><span class="check">✓</span> Email & phone support
+          <span class="tech-detail">Direct hotline during business hours + email. Emergency fixes within 2h.</span></li>
       </ul>
       <a href="mailto:hello@restaurant.website" class="btn btn-primary">Get started</a>
     </div>
@@ -446,12 +526,18 @@ html[data-lang="de"] .l-en { display: none !important; }
       <div class="price">$79 <small>/ month</small></div>
       <div class="setup">+ $649 one-time setup</div>
       <ul>
-        <li><span class="check">✓</span> <strong>Everything in Pro</strong></li>
-        <li><span class="check">✓</span> AI-generated food photography & gallery</li>
-        <li><span class="check">✓</span> Monthly SEO report</li>
-        <li><span class="check">✓</span> Coupons & gift cards</li>
-        <li><span class="check">✓</span> Automatic menu sync</li>
-        <li><span class="check">✓</span> Priority support (24h response)</li>
+        <li><span class="check">✓</span> <strong>Everything in Pro</strong>
+          <span class="tech-detail">Full ordering, reservations, dashboard, custom domain — all included from Pro.</span></li>
+        <li><span class="check">✓</span> AI-generated food photography & gallery
+          <span class="tech-detail">8 AI-generated food photos via Flux/Midjourney. Plating, lighting, styling matched to your cuisine.</span></li>
+        <li><span class="check">✓</span> Monthly SEO report
+          <span class="tech-detail">Monthly Google ranking check (keyword: your city + "pizza/restaurant/delivery"). Recommendations included.</span></li>
+        <li><span class="check">✓</span> Coupons & gift cards
+          <span class="tech-detail">TastyIgniter Coupons extension. Percentage/fixed discounts, minimum order thresholds, expiry dates.</span></li>
+        <li><span class="check">✓</span> Automatic menu sync
+          <span class="tech-detail">Changes to your website menu auto-sync to TastyIgniter ordering system. Single source of truth.</span></li>
+        <li><span class="check">✓</span> Priority support (24h response)
+          <span class="tech-detail">Dedicated contact, 24h max response time. Includes phone, email, and remote desktop if needed.</span></li>
       </ul>
       <a href="mailto:hello@restaurant.website" class="btn btn-primary">Get started</a>
     </div>
@@ -464,13 +550,20 @@ html[data-lang="de"] .l-en { display: none !important; }
       <div class="price">12 € <small>/ Monat</small></div>
       <div class="setup">+ 99 € einmalig</div>
       <ul>
-        <li><span class="check">✓</span> 5-seitige Website nach deinem Flyer</li>
-        <li><span class="check">✓</span> Speisekarte mit Kategorien & Filtern</li>
-        <li><span class="check">✓</span> Kontakt, Anfahrt, Impressum</li>
-        <li><span class="check">✓</span> Mobile-optimiert & DSGVO-konform</li>
-        <li><span class="check">✓</span> Hosting, Updates & Backups</li>
-        <li><span class="check">✓</span> Subdomain: <strong>dein-name</strong>.restaurant.website</li>
-        <li><span class="check">✓</span> Persönlicher E-Mail-Support</li>
+        <li><span class="check">✓</span> 5-seitige Website nach deinem Flyer
+          <span class="tech-detail">Individuelles HTML/CSS/JS – per KI gebaut, genau nach deinem Flyer-Design. Keine Templates.</span></li>
+        <li><span class="check">✓</span> Speisekarte mit Kategorien & Filtern
+          <span class="tech-detail">JSON-basierte Karte mit Tag-Filtern (vegan, vegetarisch, scharf…). Suchbar, sortierbar.</span></li>
+        <li><span class="check">✓</span> Kontakt, Anfahrt, Impressum
+          <span class="tech-detail">Kontaktformular, OpenStreetMap-Karte via Nominatim, Impressum/Datenschutz (DSGVO).</span></li>
+        <li><span class="check">✓</span> Mobile-optimiert & DSGVO-konform
+          <span class="tech-detail">Responsives CSS, Cookie-Hinweis, rechtliche Angaben. Gehostet in 🇩🇪 Deutschland.</span></li>
+        <li><span class="check">✓</span> Hosting, Updates & Backups
+          <span class="tech-detail">Caddy-Webserver auf dediziertem LXC-Container. Tägliche PBS-Backups. Automatisches SSL.</span></li>
+        <li><span class="check">✓</span> Subdomain: <strong>dein-name</strong>.restaurant.website
+          <span class="tech-detail">DNS via Cloudflare. Kostenloses Wildcard-SSL inklusive.</span></li>
+        <li><span class="check">✓</span> Persönlicher E-Mail-Support
+          <span class="tech-detail">Direkter Kontakt zu deinem Ansprechpartner. Kein Ticketsystem. Antwort &lt;4h.</span></li>
       </ul>
       <a href="mailto:angebot@restaurant.website" class="btn btn-primary">Loslegen</a>
     </div>
@@ -480,13 +573,20 @@ html[data-lang="de"] .l-en { display: none !important; }
       <div class="price">29 € <small>/ Monat</small></div>
       <div class="setup">+ 249 € einmalig</div>
       <ul>
-        <li><span class="check">✓</span> <strong>Alles aus Basic</strong></li>
-        <li><span class="check">✓</span> Online-Bestellsystem (Abholung & Lieferung)</li>
-        <li><span class="check">✓</span> Reservierungs-Manager</li>
-        <li><span class="check">✓</span> Eigene Domain (dein-restaurant.de)</li>
-        <li><span class="check">✓</span> Zahlungen (Stripe, PayPal)</li>
-        <li><span class="check">✓</span> Bestell- & Einnahmen-Übersicht</li>
-        <li><span class="check">✓</span> E-Mail & Telefon-Support</li>
+        <li><span class="check">✓</span> <strong>Alles aus Basic</strong>
+          <span class="tech-detail">Plus: eigene Subdomain, SSL, tägliche Backups, E-Mail-Support – alles aus Basic.</span></li>
+        <li><span class="check">✓</span> Online-Bestellsystem (Abholung & Lieferung)
+          <span class="tech-detail">TastyIgniter auf eigenem LXC-Container. Menü synchronisiert von deiner HTML-Seite. Lieferzonen.</span></li>
+        <li><span class="check">✓</span> Reservierungs-Manager
+          <span class="tech-detail">TastyIgniter Dine-In. Zeitslots, Tischplan, automatisierte Bestätigungen.</span></li>
+        <li><span class="check">✓</span> Eigene Domain (dein-restaurant.de)
+          <span class="tech-detail">Domain-Registrierung & -Verwaltung für 1 Jahr inklusive. Auto-Verlängerung.</span></li>
+        <li><span class="check">✓</span> Zahlungen (Stripe, PayPal)
+          <span class="tech-detail">Stripe Connect. 1,5% + €0,25 pro Transaktion. Auszahlung auf dein Konto.</span></li>
+        <li><span class="check">✓</span> Bestell- & Einnahmen-Übersicht
+          <span class="tech-detail">TastyIgniter Admin-Panel. Tägliche/monatliche Umsätze, beliebteste Gerichte, Export.</span></li>
+        <li><span class="check">✓</span> E-Mail & Telefon-Support
+          <span class="tech-detail">Direkte Hotline zu Geschäftszeiten + E-Mail. Notfall-Fixes innerhalb von 2h.</span></li>
       </ul>
       <a href="mailto:angebot@restaurant.website" class="btn btn-primary">Loslegen</a>
     </div>
@@ -496,12 +596,18 @@ html[data-lang="de"] .l-en { display: none !important; }
       <div class="price">59 € <small>/ Monat</small></div>
       <div class="setup">+ 499 € einmalig</div>
       <ul>
-        <li><span class="check">✓</span> <strong>Alles aus Pro</strong></li>
-        <li><span class="check">✓</span> KI-Food-Fotografie & Galerie</li>
-        <li><span class="check">✓</span> Monatliches SEO-Reporting</li>
-        <li><span class="check">✓</span> Gutscheine & Coupons</li>
-        <li><span class="check">✓</span> Automatische Menü-Synchronisation</li>
-        <li><span class="check">✓</span> Prioritäts-Support (24h)</li>
+        <li><span class="check">✓</span> <strong>Alles aus Pro</strong>
+          <span class="tech-detail">Bestellsystem, Reservierungen, Dashboard, eigene Domain – alles aus Pro.</span></li>
+        <li><span class="check">✓</span> KI-Food-Fotografie & Galerie
+          <span class="tech-detail">8 KI-generierte Food-Fotos via Flux/Midjourney. Angepasst an deine Küche & dein Styling.</span></li>
+        <li><span class="check">✓</span> Monatliches SEO-Reporting
+          <span class="tech-detail">Monatlicher Google-Ranking-Check (Stadt + "Pizza/Restaurant/Lieferdienst"). Mit Empfehlungen.</span></li>
+        <li><span class="check">✓</span> Gutscheine & Coupons
+          <span class="tech-detail">TastyIgniter Coupons-Erweiterung. Prozentuale/fixe Rabatte, Mindestbestellwerte, Ablaufdaten.</span></li>
+        <li><span class="check">✓</span> Automatische Menü-Synchronisation
+          <span class="tech-detail">Änderungen auf der Website syncen automatisch ins Bestellsystem. Eine Quelle der Wahrheit.</span></li>
+        <li><span class="check">✓</span> Prioritäts-Support (24h)
+          <span class="tech-detail">Dedizierter Ansprechpartner, max. 24h Reaktionszeit. Telefon, E-Mail & Fernwartung.</span></li>
       </ul>
       <a href="mailto:angebot@restaurant.website" class="btn btn-primary">Loslegen</a>
     </div>
@@ -662,6 +768,12 @@ function setLang(lang) {
   document.documentElement.setAttribute('data-lang', lang);
   document.getElementById('lang-en').classList.toggle('active', lang === 'en');
   document.getElementById('lang-de').classList.toggle('active', lang === 'de');
+}
+function toggleTech() {
+  const html = document.documentElement;
+  const isOn = html.getAttribute('data-tech') === 'on';
+  html.setAttribute('data-tech', isOn ? 'off' : 'on');
+  document.getElementById('tech-toggle').classList.toggle('active', !isOn);
 }
 // init
 setLang('en');
